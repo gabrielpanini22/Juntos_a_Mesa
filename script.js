@@ -1,8 +1,3 @@
-/* ==========================================================================
-   JUNTOS À MESA — script.js
-   Toda a interatividade do site: modal de introdução (onboarding),
-   botão de ajuda "?", menu mobile e toggle ONG/Doador.
-   ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
