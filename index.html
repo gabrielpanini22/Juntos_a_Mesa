@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juntos à Mesa — Alimentos que sobram, nutrindo vidas que precisam</title>
+<meta name="description" content="Plataforma que conecta estabelecimentos com excedentes alimentares a ONGs cadastradas, facilitando o agendamento da retirada antes que os alimentos percam a validade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ MODAL DE INTRODUÇÃO (ONBOARDING) ============ -->
+<div class="modal-overlay" id="introOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="introStepTitle">
+    <button class="modal-close" id="introClose" aria-label="Fechar introdução" type="button">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <div class="modal-progress" id="introProgress" aria-hidden="true">
+      <span class="dot" data-dot="1"></span>
+      <span class="dot" data-dot="2"></span>
+      <span class="dot" data-dot="3"></span>
+      <span class="dot" data-dot="4"></span>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- PASSO 1 -->
+      <section class="modal-step is-active" data-step="1">
+        <div class="modal-icon">🍽️</div>
+        <p class="modal-eyebrow">Passo 1 de 4</p>
+        <h2 class="modal-title" id="introStepTitle">Bem-vindo ao Juntos à Mesa!</h2>
+        <div class="modal-text">
+          <p>O <strong>Juntos à Mesa</strong> é uma plataforma web que tem como objetivo combater o desperdício de alimentos e a insegurança alimentar.</p>
+          <p>Conectamos <strong>estabelecimentos comerciais</strong> — mercados, padarias, hortifrutis e restaurantes — que possuem excedentes próprios para consumo a <strong>ONGs e entidades assistenciais</strong> cadastradas que apoiam famílias em situação de vulnerabilidade.</p>
+          <p>Juntos, transformamos excedentes em refeições e <em>nutrimos vidas</em>.</p>
+        </div>
+      </section>
+
+      <!-- PASSO 2 -->
+      <section class="modal-step" data-step="2">
+        <div class="modal-icon">🏢</div>
+        <p class="modal-eyebrow">Passo 2 de 4</p>
+        <h2 class="modal-title">Para Empresas e Doadores</h2>
+        <ol class="modal-list modal-list--orange">
+          <li>
+            <span class="modal-list__marker">1</span>
+            <div>
+              <h3>Crie sua conta corporativa</h3>
+              <p>Cadastre-se na plataforma em minutos. Basta informar os dados da empresa e escolher um login seguro para começar a registrar suas doações.</p>
+            </div>
+          </li>
+          <li>
+            <span class="modal-list__marker">2</span>
+            <div>
+              <h3>Adicione alimentos excedentes</h3>
+              <p>Insira o tipo de produto, quantidade, prazo de validade e, opcionalmente, uma foto. As informações ficam visíveis em tempo real para as ONGs parceiras na sua região.</p>
+            </div>
+          </li>
+          <li>
+            <span class="modal-list__marker">3</span>
+            <div>
+              <h3>Acompanhe o impacto</h3>
+              <p>Veja quais doações já foram agendadas e acompanhe seu histórico de contribuições — cada item doado conta como uma refeição a menos desperdiçada.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- PASSO 3 -->
+      <section class="modal-step" data-step="3">
+        <div class="modal-icon">🤝</div>
+        <p class="modal-eyebrow">Passo 3 de 4</p>
+        <h2 class="modal-title">Para ONGs e Entidades Assistenciais</h2>
+        <ol class="modal-list modal-list--green">
+          <li>
+            <span class="modal-list__marker">1</span>
+            <div>
+              <h3>Localize doações próximas</h3>
+              <p>Use o mapa interativo em tempo real para encontrar pontos de doação e estabelecimentos parceiros na sua região, filtrando por bairro ou CEP.</p>
+            </div>
+          </li>
+          <li>
+            <span class="modal-list__marker">2</span>
+            <div>
+              <h3>Explore os alimentos disponíveis</h3>
+              <p>Navegue pelo catálogo de doações abertas, filtrando por categoria (panificados, hortifruti, laticínios...) ou exibindo apenas os itens urgentes que vencem hoje.</p>
+            </div>
+          </li>
+          <li>
+            <span class="modal-list__marker">3</span>
+            <div>
+              <h3>Agende via WhatsApp</h3>
+              <p>Com um clique, você é conectado diretamente ao WhatsApp da empresa doadora com uma mensagem pré-preenchida para confirmar data e horário de retirada — rápido e sem burocracia.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- PASSO 4 -->
+      <section class="modal-step" data-step="4">
+        <div class="modal-icon">🌱</div>
+        <p class="modal-eyebrow">Passo 4 de 4</p>
+        <h2 class="modal-title">Nosso impacto coletivo</h2>
+        <div class="modal-text">
+          <p>Cada doação registrada na plataforma representa alimento que deixou de ir para o lixo e passou a nutrir uma família que precisava.</p>
+        </div>
+        <div class="founding-note founding-note--modal">
+          <span class="founding-note__icon">🌱</span>
+          <p><strong>Estamos começando agora.</strong> Seja o primeiro doador ou entre para o time de ONGs parceiras — cada novo cadastro aproxima mais famílias de uma refeição.</p>
+        </div>
+        <div class="modal-text">
+          <p>A plataforma está alinhada aos Objetivos de Desenvolvimento Sustentável da ONU: <strong>ODS-2</strong> (Fome Zero), <strong>ODS-12</strong> (Consumo Responsável) e <strong>ODS-17</strong> (Parcerias).</p>
+          <p>Juntos, transformamos excedentes em refeições e <span class="text-orange">nutrimos vidas</span>. Seja bem-vindo! 🤲</p>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="introBack" type="button">Voltar</button>
+      <button class="btn btn-primary" id="introNext" type="button">Próximo →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#home" class="logo">
+      <img src="assets/logo-laranja.png" width="900" height="477" alt="Juntos à Mesa" class="logo__img">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#doacoes">Doações</a>
+      <a href="#mapa">Mapa</a>
+      <a href="#parceiros">Parceiros</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn-ghost" id="btnEntrar" type="button">Entrar</button>
+      <button class="btn btn-primary" id="btnCadastrar" type="button">Cadastrar-se</button>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1>Alimentos que sobram <em>nutrindo vidas</em> que precisam</h1>
+        <p class="hero-lead">Conectamos estabelecimentos com excedentes alimentares a ONGs cadastradas — facilitando o agendamento da retirada antes que os alimentos percam a validade.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" data-toggle-target="ong">Sou uma ONG</button>
+          <button class="btn btn-outline-dark btn-lg" data-toggle-target="doador">Sou um Doador</button>
+        </div>
+        <div class="founding-note founding-note--hero">
+          <span class="founding-note__icon">🌱</span>
+          <p><strong>Estamos começando agora.</strong> Seja o primeiro doador — assim que a primeira doação acontecer, este espaço vai mostrar o impacto real da nossa comunidade.</p>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-photo" role="img" aria-label="Voluntários organizando doações de alimentos">
+          <span class="hero-photo__emoji">🥖🥕🍅🥫</span>
+          <div class="hero-photo__footer">
+            <span class="eyebrow">Pronto para começar</span>
+            <strong>Sua doação pode ser a primeira</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMO FUNCIONA ============ -->
+  <section class="how-it-works" id="como-funciona">
+    <div class="container">
+      <p class="eyebrow eyebrow--center">Como Funciona</p>
+      <h2 class="section-title section-title--center">Simples, rápido e humano</h2>
+      <p class="section-lead section-lead--center">Três passos conectam quem tem a quem precisa.</p>
+
+      <div class="steps-grid">
+        <article class="step-card">
+          <div class="step-card__top">
+            <span class="step-card__icon step-card__icon--orange">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 8h12l-1 12H7L6 8z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 8a3 3 0 016 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <span class="step-card__number">01</span>
+          </div>
+          <h3>Estabelecimento cadastra excedentes</h3>
+          <p>Mercados, padarias e restaurantes registram alimentos próximos ao vencimento com quantidade e prazo.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-card__top">
+            <span class="step-card__icon step-card__icon--outline">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 21s7-6.5 7-11.5A7 7 0 105 9.5C5 14.5 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <span class="step-card__number">02</span>
+          </div>
+          <h3>ONG localiza no mapa e agenda</h3>
+          <p>A organização vê em tempo real todos os pontos de doação próximos e agenda a retirada com data e hora.</p>
+        </article>
+
+        <article class="step-card">
+          <div class="step-card__top">
+            <span class="step-card__icon step-card__icon--yellow">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 13l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="step-card__number">03</span>
+          </div>
+          <h3>Alimentos chegam a quem precisa</h3>
+          <p>Com a retirada confirmada, os alimentos são distribuídos às famílias vulneráveis antes de perder a validade.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAPA ============ -->
+  <section class="map-section" id="mapa">
+    <div class="container map-grid">
+      <div class="map-content">
+        <p class="eyebrow">Mapeamento e Localização</p>
+        <h2 class="section-title">Encontre pontos de doação próximos</h2>
+        <p class="section-lead">Visualize em tempo real todos os estabelecimentos parceiros com excedentes disponíveis e agende a retirada com poucos cliques.</p>
+
+        <div class="map-legend">
+          <span><i class="legend-dot legend-dot--orange"></i> Doadores</span>
+          <span><i class="legend-dot legend-dot--green"></i> ONGs</span>
+        </div>
+
+        <form class="map-search" id="mapSearchForm">
+          <input type="text" placeholder="Buscar por bairro ou CEP..." aria-label="Buscar por bairro ou CEP">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+      </div>
+
+      <div class="map-visual" aria-hidden="true">
+        <div class="map-canvas">
+          <span class="pin pin--doador" style="top:38%; left:16%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
+          <span class="pin pin--ong" style="top:12%; left:64%;">♥</span>
+          <span class="pin pin--doador" style="top:44%; left:53%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
+          <span class="pin pin--ong" style="top:58%; left:23%;">♥</span>
+          <span class="pin pin--doador" style="top:68%; left:71%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
+          <span class="pin pin--doador" style="top:78%; left:44%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
+        </div>
+        <div class="map-tag">São Paulo, SP · 6 pontos ativos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOAÇÕES EM ABERTO ============ -->
+  <section class="donations" id="doacoes">
+    <div class="container">
+      <p class="eyebrow">Disponíveis Agora</p>
+      <h2 class="section-title">Doações em aberto</h2>
+
+      <div class="empty-state empty-state--bordered">
+        <span class="empty-state__icon">🍽️</span>
+        <h3>Seja o primeiro doador</h3>
+        <p>Ainda não há doações cadastradas por aqui. Assim que um estabelecimento registrar o primeiro excedente, ele vai aparecer nesta seção.</p>
+        <button class="btn btn-primary" id="btnPrimeiraDoacao" type="button">Quero doar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARCEIROS ============ -->
+  <section class="partners" id="parceiros">
+    <div class="container">
+      <p class="eyebrow eyebrow--center eyebrow--light">Parceiros</p>
+      <h2 class="section-title section-title--center section-title--light">ONGs que já fazem parte</h2>
+
+      <div class="empty-state">
+        <span class="empty-state__icon">🤝</span>
+        <h3>Seja o primeiro parceiro</h3>
+        <p>Ainda não há ONGs parceiras cadastradas. Junte-se a nós desde o início e ajude a construir essa rede.</p>
+        <button class="btn btn-dark" id="btnSerParceiro" type="button">Quero ser parceiro</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOBRE (breve) ============ -->
+  <section class="about" id="sobre">
+    <div class="container about-inner">
+      <p class="eyebrow">Sobre</p>
+      <h2 class="section-title">Combatendo o desperdício, um prato por vez</h2>
+      <p class="section-lead">O Juntos à Mesa nasceu para reduzir o desperdício de alimentos e a insegurança alimentar, conectando quem tem excedentes a quem precisa deles — em conformidade com os Objetivos de Desenvolvimento Sustentável da ONU: ODS-2 (Fome Zero), ODS-12 (Consumo Responsável) e ODS-17 (Parcerias).</p>
+    </div>
+  </section>
+
+  <!-- ============ CADASTRO (CTA final) ============ -->
+  <section class="cta-signup" id="cadastro">
+    <div class="container cta-signup__inner">
+      <h2 class="section-title section-title--center">Pronto para fazer parte?</h2>
+      <p class="section-lead section-lead--center">Cadastre-se gratuitamente — é rápido e seguro.</p>
+
+      <div class="toggle-pill" id="cadastroToggle" role="tablist" aria-label="Tipo de cadastro">
+        <button type="button" class="toggle-pill__btn is-active" data-audience="ong" role="tab" aria-selected="true">Sou uma ONG</button>
+        <button type="button" class="toggle-pill__btn" data-audience="doador" role="tab" aria-selected="false">Sou um Doador</button>
+      </div>
+
+      <div class="cadastro-card" id="cadastroCard">
+        <h3 id="cadastroCardTitle">Cadastro para ONGs</h3>
+        <p id="cadastroCardDesc">Acesse o formulário completo de cadastro para ONGs.</p>
+        <button class="btn btn-dark btn-lg" id="cadastroCardBtn" type="button">Criar conta ONG →</button>
+        <p class="auth-switch">Já tem conta? <strong>Entrar agora</strong></p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#home" class="logo logo--footer">
+        <img src="assets/logo-laranja.png" width="900" height="477" alt="Juntos à Mesa" class="logo__img">
+      </a>
+      <p>Conectando excedentes alimentares a quem precisa. ODS-2 · ODS-12 · ODS-17.</p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Plataforma</h4>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#mapa">Mapa de Doações</a>
+      <a href="#cadastro" data-audience-link="ong">Cadastrar ONG</a>
+      <a href="#cadastro" data-audience-link="doador">Cadastrar Doador</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Suporte</h4>
+      <a href="#sobre">Central de Ajuda</a>
+      <a href="#sobre">Fale Conosco</a>
+      <a href="#sobre">Privacidade</a>
+      <a href="#sobre">Termos de Uso</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ BOTÃO FLUTUANTE DE AJUDA ============ -->
+<button class="help-fab" id="helpButton" type="button" aria-label="Ver instruções de novo">?</button>
+
+<script src="script.js"></script>
+</body>
+</html>
