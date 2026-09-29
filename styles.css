@@ -80,10 +80,28 @@ input { font-family: inherit; }
 .btn-outline-dark { --btn-border: var(--color-green); --btn-color: var(--color-green); --btn-bg-hover: var(--color-green); --btn-color-hover: #fff; }
 .btn-outline-light, .btn-ghost { --btn-border: rgba(253,251,247,.45); --btn-color: var(--color-cream); --btn-bg-hover: rgba(253,251,247,.12); }
 
-/* ---------- Logo (imagem: laranja sobre fundo verde / verde sobre fundo laranja) ---------- */
-.logo { display: inline-flex; align-items: center; }
-.logo__img { height: 40px; width: auto; }
-.logo--footer .logo__img { height: 48px; }
+/* --- LOGO DO TOPO (HEADER) --- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 42px;
+  width: auto;
+  display: block;
+  transform: translateY(-3px); /* Sobe a imagem 3px para alinhar com o texto */
+}
+
+.logo-text {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 
 /* ---------- Aviso reutilizável "estamos começando agora" ---------- */
 .founding-note { display: flex; gap: 12px; align-items: flex-start; background: var(--color-cream-alt); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; }
@@ -237,6 +255,30 @@ input { font-family: inherit; }
 .footer-col h4 { font-family: var(--font-body); font-size: .78rem; font-weight: 700; letter-spacing: .05em; color: var(--color-orange); margin-bottom: 14px; }
 .footer-col a { display: block; padding: 6px 0; color: rgba(253,251,247,.75); font-size: .9rem; }
 .footer-col a:hover { color: var(--color-cream); }
+
+
+/* --- LOGO DO RODAPÉ (FOOTER) --- */
+.logo--footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin-bottom: 16px;
+}
+
+.footer-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  transform: translateY(-3px); /* Sobe a imagem 3px no footer também */
+}
+
+.footer-logo-text {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+}
 
 @media (min-width: 760px) {
   .footer-inner { grid-template-columns: 1.4fr 1fr 1fr; }
