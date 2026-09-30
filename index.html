@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<!--adaptação do site para telas de celulares, tablets e computadores-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juntos à Mesa — Alimentos que sobram, nutrindo vidas que precisam</title>
 <meta name="description" content="Plataforma que conecta estabelecimentos com excedentes alimentares a ONGs cadastradas, facilitando o agendamento da retirada antes que os alimentos percam a validade.">
@@ -24,6 +25,7 @@
       <span class="dot" data-dot="2"></span>
       <span class="dot" data-dot="3"></span>
       <span class="dot" data-dot="4"></span>
+
     </div>
 
     <div class="modal-body">
@@ -228,25 +230,25 @@
     </div>
   </section>
 
-  <!-- ============ MAPA ============ -->
+ <!-- ============ MAPA ============ -->
   <section class="map-section" id="mapa">
     <div class="container map-grid">
       <div class="map-content">
         <p class="eyebrow">Mapeamento e Localização</p>
         <h2 class="section-title">Encontre pontos de doação próximos</h2>
         <p class="section-lead">Visualize em tempo real todos os estabelecimentos parceiros com excedentes disponíveis e agende a retirada com poucos cliques.</p>
-
+ 
         <div class="map-legend">
           <span><i class="legend-dot legend-dot--orange"></i> Doadores</span>
           <span><i class="legend-dot legend-dot--green"></i> ONGs</span>
         </div>
-
-        <form class="map-search" id="mapSearchForm">
+ 
+        <div class="map-search">
           <input type="text" placeholder="Buscar por bairro ou CEP..." aria-label="Buscar por bairro ou CEP">
-          <button type="submit" class="btn btn-primary">Buscar</button>
-        </form>
+          <button type="button" class="btn btn-primary">Buscar</button>
+        </div>
       </div>
-
+ 
       <div class="map-visual" aria-hidden="true">
         <div class="map-canvas">
           <span class="pin pin--doador" style="top:38%; left:16%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
@@ -260,7 +262,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- ============ DOAÇÕES EM ABERTO ============ -->
   <section class="donations" id="doacoes">
     <div class="container">

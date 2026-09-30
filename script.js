@@ -92,8 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
      2) MENU MOBILE (HAMBURGER)
   ------------------------------------------------------------------ */
   const navToggle     = document.getElementById('navToggle');
-  const mainNav        = document.getElementById('mainNav');
-  const headerActions  = document.querySelector('.header-actions');
+  const mainNav       = document.getElementById('mainNav');
+  const headerActions = document.querySelector('.header-actions');
 
   function closeMobileMenu() {
     navToggle.setAttribute('aria-expanded', 'false');
@@ -111,89 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fecha o menu mobile ao clicar em qualquer link de navegação
   mainNav.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', closeMobileMenu);
-  });
-
-
-  /* ------------------------------------------------------------------
-     3) TOGGLE DE CADASTRO (Sou uma ONG / Sou um Doador)
-  ------------------------------------------------------------------ */
-  const cadastroToggle   = document.getElementById('cadastroToggle');
-  const toggleButtons    = Array.from(cadastroToggle.querySelectorAll('.toggle-pill__btn'));
-  const cadastroCardTitle = document.getElementById('cadastroCardTitle');
-  const cadastroCardDesc  = document.getElementById('cadastroCardDesc');
-  const cadastroCardBtn   = document.getElementById('cadastroCardBtn');
-
-  const AUDIENCE_CONTENT = {
-    ong: {
-      title: 'Cadastro para ONGs',
-      desc: 'Acesse o formulário completo de cadastro para ONGs.',
-      btnLabel: 'Criar conta ONG →',
-      btnClass: 'btn-dark'
-    },
-    doador: {
-      title: 'Cadastro para Doadores',
-      desc: 'Acesse o formulário completo de cadastro para estabelecimentos doadores.',
-      btnLabel: 'Criar conta Doador →',
-      btnClass: 'btn-primary'
-    }
-  };
-
-  function setAudience(audience) {
-    toggleButtons.forEach(btn => {
-      const isActive = btn.dataset.audience === audience;
-      btn.classList.toggle('is-active', isActive);
-      btn.setAttribute('aria-selected', String(isActive));
-    });
-
-    const content = AUDIENCE_CONTENT[audience];
-    cadastroCardTitle.textContent = content.title;
-    cadastroCardDesc.textContent = content.desc;
-    cadastroCardBtn.textContent = content.btnLabel;
-    cadastroCardBtn.classList.remove('btn-dark', 'btn-primary');
-    cadastroCardBtn.classList.add(content.btnClass);
-  }
-
-  toggleButtons.forEach(btn => {
-    btn.addEventListener('click', () => setAudience(btn.dataset.audience));
-  });
-
-  function scrollToCadastro(audience) {
-    if (audience) setAudience(audience);
-    document.getElementById('cadastro').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // Botões do hero: "Sou uma ONG" / "Sou um Doador"
-  document.querySelectorAll('[data-toggle-target]').forEach(btn => {
-    btn.addEventListener('click', () => scrollToCadastro(btn.dataset.toggleTarget));
-  });
-
-  // Links do rodapé: "Cadastrar ONG" / "Cadastrar Doador"
-  document.querySelectorAll('[data-audience-link]').forEach(link => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault();
-      scrollToCadastro(link.dataset.audienceLink);
-    });
-  });
-
-  // Botão "Cadastrar-se" do header
-  document.getElementById('btnCadastrar').addEventListener('click', () => scrollToCadastro());
-
-  // Caixas de estado vazio: "Quero doar" (Doações) e "Quero ser parceiro" (Parceiros)
-  document.getElementById('btnPrimeiraDoacao').addEventListener('click', () => scrollToCadastro('doador'));
-  document.getElementById('btnSerParceiro').addEventListener('click', () => scrollToCadastro('ong'));
-
-
-  /* ------------------------------------------------------------------
-     4) BUSCA NO MAPA (demonstração)
-  ------------------------------------------------------------------ */
-  const mapSearchForm = document.getElementById('mapSearchForm');
-  mapSearchForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const input = mapSearchForm.querySelector('input');
-    if (input.value.trim()) {
-      input.placeholder = `Resultados de demonstração para "${input.value.trim()}"`;
-      input.value = '';
-    }
   });
 
 });
