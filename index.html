@@ -2,360 +2,316 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<!--adaptação do site para telas de celulares, tablets e computadores-->
+<!-- Mobile first: o layout parte do celular e se adapta a telas maiores -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Juntos à Mesa — Alimentos que sobram, nutrindo vidas que precisam</title>
-<meta name="description" content="Plataforma que conecta estabelecimentos com excedentes alimentares a ONGs cadastradas, facilitando o agendamento da retirada antes que os alimentos percam a validade.">
+<meta name="description" content="Plataforma que conecta estabelecimentos com excedentes alimentares a ONGs cadastradas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
 </head>
 <body>
+<a class="pular" href="#conteudo">Ir para o conteúdo</a>
 
-<!-- ============ MODAL DE INTRODUÇÃO (ONBOARDING) ============ -->
-<div class="modal-overlay" id="introOverlay" hidden>
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="introStepTitle">
-    <button class="modal-close" id="introClose" aria-label="Fechar introdução" type="button">
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
+<!-- ===== MODAL DE INTRODUÇÃO (4 passos) ===== -->
+<div class="fundo-modal" id="modalIntro" hidden>
+  <div class="modal" role="dialog" aria-modal="true">
+    <button class="modal-fechar" id="introFechar" type="button" aria-label="Fechar">✕</button>
+    
 
-    <div class="modal-progress" id="introProgress" aria-hidden="true">
-      <span class="dot" data-dot="1"></span>
-      <span class="dot" data-dot="2"></span>
-      <span class="dot" data-dot="3"></span>
-      <span class="dot" data-dot="4"></span>
+    <section class="passo ativo">
+      <p class="sobretitulo">Passo 1 de 4</p>
+      <h2>Bem-vindo ao Juntos à Mesa!</h2>
+      <p>O <strong>Juntos à Mesa</strong> é uma plataforma web que combate o desperdício de alimentos e a insegurança alimentar.</p>
+      <p>Conectamos <strong>estabelecimentos comerciais</strong> com excedentes próprios para consumo a <strong>ONGs e entidades assistenciais</strong> cadastradas.</p>
+    </section>
 
-    </div>
+    <section class="passo">
+      <p class="sobretitulo">Passo 2 de 4</p>
+      <h2>Para Empresas e Doadores</h2>
+      <ol class="lista-passos laranja">
+        <li><b>1</b><div><h3>Crie sua conta corporativa</h3><p>Informe os dados da empresa e escolha um login seguro.</p></div></li>
+        <li><b>2</b><div><h3>Adicione alimentos excedentes</h3><p>Informe produto, quantidade, validade e, se quiser, uma observação.</p></div></li>
+        <li><b>3</b><div><h3>Acompanhe o impacto</h3><p>Veja quais doações foram agendadas e seu histórico.</p></div></li>
+      </ol>
+    </section>
 
-    <div class="modal-body">
+    <section class="passo">
+      <p class="sobretitulo">Passo 3 de 4</p>
+      <h2>Para ONGs e Entidades Assistenciais</h2>
+      <ol class="lista-passos verde">
+        <li><b>1</b><div><h3>Localize doações próximas</h3><p>Use o mapa e filtre por bairro ou CEP.</p></div></li>
+        <li><b>2</b><div><h3>Explore os alimentos</h3><p>Filtre por categoria ou veja só os itens urgentes.</p></div></li>
+        <li><b>3</b><div><h3>Agende via WhatsApp</h3><p>Com um clique, fale com a empresa e combine a retirada.</p></div></li>
+      </ol>
+    </section>
 
-      <!-- PASSO 1 -->
-      <section class="modal-step is-active" data-step="1">
-        <div class="modal-icon">🍽️</div>
-        <p class="modal-eyebrow">Passo 1 de 4</p>
-        <h2 class="modal-title" id="introStepTitle">Bem-vindo ao Juntos à Mesa!</h2>
-        <div class="modal-text">
-          <p>O <strong>Juntos à Mesa</strong> é uma plataforma web que tem como objetivo combater o desperdício de alimentos e a insegurança alimentar.</p>
-          <p>Conectamos <strong>estabelecimentos comerciais</strong> — mercados, padarias, hortifrutis e restaurantes — que possuem excedentes próprios para consumo a <strong>ONGs e entidades assistenciais</strong> cadastradas que apoiam famílias em situação de vulnerabilidade.</p>
-          <p>Juntos, transformamos excedentes em refeições e <em>nutrimos vidas</em>.</p>
-        </div>
-      </section>
+    <section class="passo">
+      <p class="sobretitulo">Passo 4 de 4</p>
+      <h2>Nosso impacto coletivo</h2>
+      <div class="aviso"><span>🌱</span><p><strong>Estamos começando agora.</strong> Seja o primeiro doador ou entre para o time de ONGs parceiras.</p></div>
+      <p>Alinhados aos ODS da ONU: <strong>ODS-2</strong> (Fome Zero), <strong>ODS-12</strong> (Consumo Responsável) e <strong>ODS-17</strong> (Parcerias).</p>
+    </section>
 
-      <!-- PASSO 2 -->
-      <section class="modal-step" data-step="2">
-        <div class="modal-icon">🏢</div>
-        <p class="modal-eyebrow">Passo 2 de 4</p>
-        <h2 class="modal-title">Para Empresas e Doadores</h2>
-        <ol class="modal-list modal-list--orange">
-          <li>
-            <span class="modal-list__marker">1</span>
-            <div>
-              <h3>Crie sua conta corporativa</h3>
-              <p>Cadastre-se na plataforma em minutos. Basta informar os dados da empresa e escolher um login seguro para começar a registrar suas doações.</p>
-            </div>
-          </li>
-          <li>
-            <span class="modal-list__marker">2</span>
-            <div>
-              <h3>Adicione alimentos excedentes</h3>
-              <p>Insira o tipo de produto, quantidade, prazo de validade e, opcionalmente, uma foto. As informações ficam visíveis em tempo real para as ONGs parceiras na sua região.</p>
-            </div>
-          </li>
-          <li>
-            <span class="modal-list__marker">3</span>
-            <div>
-              <h3>Acompanhe o impacto</h3>
-              <p>Veja quais doações já foram agendadas e acompanhe seu histórico de contribuições — cada item doado conta como uma refeição a menos desperdiçada.</p>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <!-- PASSO 3 -->
-      <section class="modal-step" data-step="3">
-        <div class="modal-icon">🤝</div>
-        <p class="modal-eyebrow">Passo 3 de 4</p>
-        <h2 class="modal-title">Para ONGs e Entidades Assistenciais</h2>
-        <ol class="modal-list modal-list--green">
-          <li>
-            <span class="modal-list__marker">1</span>
-            <div>
-              <h3>Localize doações próximas</h3>
-              <p>Use o mapa interativo em tempo real para encontrar pontos de doação e estabelecimentos parceiros na sua região, filtrando por bairro ou CEP.</p>
-            </div>
-          </li>
-          <li>
-            <span class="modal-list__marker">2</span>
-            <div>
-              <h3>Explore os alimentos disponíveis</h3>
-              <p>Navegue pelo catálogo de doações abertas, filtrando por categoria (panificados, hortifruti, laticínios...) ou exibindo apenas os itens urgentes que vencem hoje.</p>
-            </div>
-          </li>
-          <li>
-            <span class="modal-list__marker">3</span>
-            <div>
-              <h3>Agende via WhatsApp</h3>
-              <p>Com um clique, você é conectado diretamente ao WhatsApp da empresa doadora com uma mensagem pré-preenchida para confirmar data e horário de retirada — rápido e sem burocracia.</p>
-            </div>
-          </li>
-        </ol>
-      </section>
-
-      <!-- PASSO 4 -->
-      <section class="modal-step" data-step="4">
-        <div class="modal-icon">🌱</div>
-        <p class="modal-eyebrow">Passo 4 de 4</p>
-        <h2 class="modal-title">Nosso impacto coletivo</h2>
-        <div class="modal-text">
-          <p>Cada doação registrada na plataforma representa alimento que deixou de ir para o lixo e passou a nutrir uma família que precisava.</p>
-        </div>
-        <div class="founding-note founding-note--modal">
-          <span class="founding-note__icon">🌱</span>
-          <p><strong>Estamos começando agora.</strong> Seja o primeiro doador ou entre para o time de ONGs parceiras — cada novo cadastro aproxima mais famílias de uma refeição.</p>
-        </div>
-        <div class="modal-text">
-          <p>A plataforma está alinhada aos Objetivos de Desenvolvimento Sustentável da ONU: <strong>ODS-2</strong> (Fome Zero), <strong>ODS-12</strong> (Consumo Responsável) e <strong>ODS-17</strong> (Parcerias).</p>
-          <p>Juntos, transformamos excedentes em refeições e <span class="text-orange">nutrimos vidas</span>. Seja bem-vindo! 🤲</p>
-        </div>
-      </section>
-
-    </div>
-
-    <div class="modal-footer">
-      <button class="btn btn-outline" id="introBack" type="button">Voltar</button>
-      <button class="btn btn-primary" id="introNext" type="button">Próximo →</button>
+    <div class="modal-rodape"><div class="progresso" id="introProgresso"><span></span><span></span><span></span><span></span></div>
+      <button class="botao botao-contorno" id="introVoltar" type="button">Voltar</button>
+      <button class="botao botao-primario" id="introProximo" type="button">Próximo →</button>
     </div>
   </div>
 </div>
 
-<!-- ============ HEADER ============ -->
-<header class="site-header">
-  <div class="container header-inner">
-    <a href="#home" class="logo">
-    <img src="imagens/Logo Laranja 2.png" alt="Logo" class="logo-img">
-    <span class="logo-text">Juntos à Mesa</span>
-</a>
+<!-- ===== MODAL DE AGENDAMENTO VIA WHATSAPP ===== -->
+<div class="fundo-modal" id="modalZap" hidden>
+  <div class="modal modal-centro" role="dialog" aria-modal="true" aria-labelledby="zapTitulo">
+    <div class="zap-icone">💬</div>
+    <h2 id="zapTitulo">Agendar via WhatsApp</h2>
+    <p>Você será redirecionado ao WhatsApp para conversar diretamente com a empresa doadora e confirmar a retirada.</p>
+    <div class="aviso" id="zapResumo"></div>
+    <p class="pequeno" id="zapNota"></p>
+    <a class="botao botao-zap botao-bloco" id="zapLink" target="_blank" rel="noopener">💬 Ir para o WhatsApp</a>
+    <button class="botao botao-texto botao-bloco" id="zapCancelar" type="button">Cancelar</button>
+  </div>
+</div>
 
-    <nav class="main-nav" id="mainNav">
-      <a href="#como-funciona">Como Funciona</a>
-      <a href="#doacoes">Doações</a>
-      <a href="#mapa">Mapa</a>
-      <a href="#parceiros">Parceiros</a>
-      <a href="#sobre">Sobre</a>
+<!-- ===== CABEÇALHO ===== -->
+<header class="cabecalho">
+  <div class="conteiner cabecalho-interno">
+    <div class="marca"><a href="#inicio" class="logo" data-tela="inicio"><img class="logo-img" src="imagens/Logo Laranja 2.png" alt="">Juntos à Mesa</a><span class="nome-conta" id="etiquetaUsuario" hidden></span></div>
+    <nav class="menu" id="menu" aria-label="Menu principal"><ul class="menu-lista"><li><a href="#como-funciona" data-tela="inicio">Como Funciona</a></li><li><a href="#doacoes" data-tela="inicio">Doações</a></li><li><a href="#mapa" data-tela="inicio">Mapa</a></li><li><a href="#parceiros" data-tela="inicio">Parceiros</a></li><li><a href="#sobre" data-tela="inicio">Sobre</a></li></ul><div class="acoes" id="acoesVisitante">
+        <button class="botao botao-fantasma" id="btnEntrar" type="button">Entrar</button>
+        <button class="botao botao-primario" id="btnCadastrar" type="button">Cadastrar-se</button>
+      </div>
+      <div class="acoes" id="acoesUsuario" hidden>
+        <a class="botao botao-fantasma" id="voltarInicio" href="#inicio" data-tela="inicio" hidden>← Voltar à tela inicial</a>
+        <button class="botao botao-fantasma" id="btnPainel" type="button">Meu painel</button>
+        <button class="botao botao-fantasma" id="btnSair" type="button">Sair</button>
+      </div>
     </nav>
-
-    <div class="header-actions">
-      <button class="btn btn-ghost" id="btnEntrar" type="button">Entrar</button>
-      <button class="btn btn-primary" id="btnCadastrar" type="button">Cadastrar-se</button>
-    </div>
-
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburguer" id="hamburguer" aria-controls="menu" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<main>
+<main id="conteudo" tabindex="-1">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <h1>Alimentos que sobram <em>nutrindo vidas</em> que precisam</h1>
-        <p class="hero-lead">Conectamos estabelecimentos com excedentes alimentares a ONGs cadastradas — facilitando o agendamento da retirada antes que os alimentos percam a validade.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary btn-lg" data-toggle-target="ong">Sou uma ONG</button>
-          <button class="btn btn-outline-dark btn-lg" data-toggle-target="doador">Sou um Doador</button>
-        </div>
-        <div class="founding-note founding-note--hero">
-          <span class="founding-note__icon">🌱</span>
-          <p><strong>Estamos começando agora.</strong> Seja o primeiro doador — assim que a primeira doação acontecer, este espaço vai mostrar o impacto real da nossa comunidade.</p>
-        </div>
+<!-- ===== TELA: INÍCIO ===== -->
+<div class="tela" id="tela-inicio">
+  <section class="hero" id="inicio">
+    <div class="conteiner grade-hero"><div>
+      <h1>Alimentos que sobram <em>nutrindo vidas</em> que precisam</h1>
+      <p class="texto-apoio">Conectamos estabelecimentos com excedentes alimentares a ONGs cadastradas — facilitando o agendamento da retirada antes que os alimentos percam a validade.</p>
+      <div class="hero-botoes">
+        <button class="botao botao-primario botao-grande" data-cadastro="ong" type="button">Sou uma ONG</button>
+        <button class="botao botao-contorno-escuro botao-grande" data-cadastro="doador" type="button">Sou um Doador</button>
       </div>
-
-      <div class="hero-visual">
-        <div class="hero-photo" role="img" aria-label="Voluntários organizando doações de alimentos">
-          <span class="hero-photo__emoji">🥖🥕🍅🥫</span>
-          <div class="hero-photo__footer">
-            <span class="eyebrow">Pronto para começar</span>
-            <strong>Sua doação pode ser a primeira</strong>
-          </div>
-        </div>
-      </div>
+      <div class="hero-numeros" id="heroNumeros" hidden><div><strong id="numDoacoes">0</strong><span>doações realizadas</span></div><div><strong id="numParceiros">0</strong><span>parceiros ativos</span></div><div><strong id="numOngs">0</strong><span>ONGs cadastradas</span></div></div><div class="aviso" id="avisoInicio"><span>🌱</span><p><strong>Estamos começando agora.</strong> Seja o primeiro doador — assim que a primeira doação acontecer, este espaço vai mostrar o impacto real da nossa comunidade.</p></div></div><div class="hero-visual"><div class="hero-chip chip-doacao" id="chipDoacao" hidden></div><div class="hero-chip chip-retirada" id="chipRetirada" hidden></div><div class="hero-foto"><div class="slides"><img class="slide ativo" src="imagens/Imagem 1.jpg" alt="Refeição sendo servida em pratinhos"><img class="slide" src="imagens/Imagem 2.jpg" alt="Mãos recebendo um punhado de arroz"><img class="slide" src="imagens/Imagem 3.jpg" alt="Voluntário servindo bebida para crianças"><img class="slide" src="imagens/Imagem 4.jpg" alt="Voluntários entregando cestas com alimentos"><img class="slide" src="imagens/Imagem 5.jpg" alt="Criança tomando leite em uma sacola"></div><div class="slides-pontos" id="slidesPontos" aria-hidden="true"></div><div class="hero-foto-rodape"><small id="heroImpactoTitulo">PRONTO PARA COMEÇAR</small><strong id="heroImpacto">Sua doação pode ser a primeira</strong></div></div></div>
     </div>
   </section>
 
-  <!-- ============ COMO FUNCIONA ============ -->
-  <section class="how-it-works" id="como-funciona">
-    <div class="container">
-      <p class="eyebrow eyebrow--center">Como Funciona</p>
-      <h2 class="section-title section-title--center">Simples, rápido e humano</h2>
-      <p class="section-lead section-lead--center">Três passos conectam quem tem a quem precisa.</p>
-
-      <div class="steps-grid">
-        <article class="step-card">
-          <div class="step-card__top">
-            <span class="step-card__icon step-card__icon--orange">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 8h12l-1 12H7L6 8z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 8a3 3 0 016 0" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-            </span>
-            <span class="step-card__number">01</span>
-          </div>
-          <h3>Estabelecimento cadastra excedentes</h3>
-          <p>Mercados, padarias e restaurantes registram alimentos próximos ao vencimento com quantidade e prazo.</p>
-        </article>
-
-        <article class="step-card">
-          <div class="step-card__top">
-            <span class="step-card__icon step-card__icon--outline">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 21s7-6.5 7-11.5A7 7 0 105 9.5C5 14.5 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-            </span>
-            <span class="step-card__number">02</span>
-          </div>
-          <h3>ONG localiza no mapa e agenda</h3>
-          <p>A organização vê em tempo real todos os pontos de doação próximos e agenda a retirada com data e hora.</p>
-        </article>
-
-        <article class="step-card">
-          <div class="step-card__top">
-            <span class="step-card__icon step-card__icon--yellow">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 13l4 4 10-10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <span class="step-card__number">03</span>
-          </div>
-          <h3>Alimentos chegam a quem precisa</h3>
-          <p>Com a retirada confirmada, os alimentos são distribuídos às famílias vulneráveis antes de perder a validade.</p>
-        </article>
-      </div>
-    </div>
+  <section class="secao" id="como-funciona">
+    <div class="conteiner">
+      <p class="sobretitulo centro">Como Funciona</p>
+      <h2 class="titulo centro">Simples, rápido e humano</h2>
+      <ol class="grade-passos">
+        <li class="cartao"><div class="cartao-topo"><span class="icone icone-laranja"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 016 0"/></svg></span><span class="numero">01</span></div><h3>Estabelecimento cadastra excedentes</h3><p>Mercados, padarias e restaurantes registram alimentos próximos ao vencimento.</p></li>
+        <li class="cartao"><div class="cartao-topo"><span class="icone icone-verde"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-11.5A7 7 0 105 9.5C5 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.2"/></svg></span><span class="numero">02</span></div><h3>ONG localiza no mapa e agenda</h3><p>A organização vê os pontos de doação próximos e agenda a retirada.</p></li>
+        <li class="cartao"><div class="cartao-topo"><span class="icone icone-amarelo"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4 10-10"/></svg></span><span class="numero">03</span></div><h3>Alimentos chegam a quem precisa</h3><p>Com a retirada confirmada, os alimentos vão às famílias antes de vencer.</p></li>
+      </ol></div>
   </section>
 
- <!-- ============ MAPA ============ -->
-  <section class="map-section" id="mapa">
-    <div class="container map-grid">
-      <div class="map-content">
-        <p class="eyebrow">Mapeamento e Localização</p>
-        <h2 class="section-title">Encontre pontos de doação próximos</h2>
-        <p class="section-lead">Visualize em tempo real todos os estabelecimentos parceiros com excedentes disponíveis e agende a retirada com poucos cliques.</p>
- 
-        <div class="map-legend">
-          <span><i class="legend-dot legend-dot--orange"></i> Doadores</span>
-          <span><i class="legend-dot legend-dot--green"></i> ONGs</span>
-        </div>
- 
-        <div class="map-search">
-          <input type="text" placeholder="Buscar por bairro ou CEP..." aria-label="Buscar por bairro ou CEP">
-          <button type="button" class="btn btn-primary">Buscar</button>
+  <section class="secao fundo-bege" id="mapa">
+    <div class="conteiner grade-mapa">
+      <div>
+        <p class="sobretitulo">Mapeamento e Localização</p>
+        <h2 class="titulo">Encontre pontos de doação próximos</h2>
+        <p class="texto-apoio">Veja os estabelecimentos com excedentes e filtre por bairro ou CEP.</p>
+        <div class="legenda"><span><i class="ponto laranja"></i>🏪 Doadores</span><span><i class="ponto verde"></i>🤝 ONGs</span></div>
+        <div class="busca">
+          <input type="text" id="mapaBusca" placeholder="Buscar por bairro ou CEP..." aria-label="Buscar por bairro ou CEP">
+          <button class="botao botao-primario" id="mapaBuscar" type="button">Buscar</button>
         </div>
       </div>
- 
-      <div class="map-visual" aria-hidden="true">
-        <div class="map-canvas">
-          <span class="pin pin--doador" style="top:38%; left:16%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
-          <span class="pin pin--ong" style="top:12%; left:64%;">♥</span>
-          <span class="pin pin--doador" style="top:44%; left:53%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
-          <span class="pin pin--ong" style="top:58%; left:23%;">♥</span>
-          <span class="pin pin--doador" style="top:68%; left:71%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
-          <span class="pin pin--doador" style="top:78%; left:44%;"><svg viewBox="0 0 24 24" width="14" height="14"><path d="M4 21V7h16v14M9 21v-6h6v6" fill="none" stroke="#fff" stroke-width="1.6"/></svg></span>
+      <div class="mapa" id="mapa-area"><i class="quadra q1"></i><i class="quadra q2"></i><i class="quadra q3"></i><i class="quadra q4"></i><div class="mapa-etiqueta" id="mapaEtiqueta"></div></div>
+    </div>
+  </section>
+
+  <section class="secao" id="doacoes">
+    <div class="conteiner">
+      <div class="secao-topo"><div><p class="sobretitulo">Disponíveis agora</p><h2 class="titulo">Doações em aberto</h2></div><a href="#" class="ver-todas" id="verTodas">Ver todas →</a></div>
+      <div class="grade-cartoes" id="inicioDoacoes"></div>
+    </div>
+  </section>
+
+  <section class="secao fundo-verde" id="parceiros">
+    <div class="conteiner">
+      <p class="sobretitulo centro amarelo">Parceiros</p>
+      <h2 class="titulo centro claro">ONGs que já fazem parte</h2>
+      <div class="grade-cartoes" id="inicioParceiros"></div>
+    </div>
+  </section>
+
+  <section class="secao" id="sobre">
+    <div class="conteiner estreito">
+      <p class="sobretitulo">Sobre</p>
+      <h2 class="titulo">Combatendo o desperdício, um prato por vez</h2>
+      <p class="texto-apoio">O Juntos à Mesa nasceu para reduzir o desperdício de alimentos e a insegurança alimentar, conectando quem tem excedentes a quem precisa deles — em conformidade com os ODS-2, ODS-12 e ODS-17 da ONU.</p>
+    </div>
+  </section>
+
+  <section class="secao fundo-bege" id="cadastro">
+    <div class="conteiner estreito centro">
+      <h2 class="titulo">Pronto para fazer parte?</h2>
+      <p class="texto-apoio">Cadastre-se gratuitamente — é rápido e seguro.</p>
+      <div class="alternador" data-alternador>
+        <button type="button" class="ativo" data-tipo="ong">Sou uma ONG</button>
+        <button type="button" data-tipo="doador">Sou um Doador</button>
+      </div>
+      <div class="cartao cartao-cadastro">
+        <h3 id="cadTitulo">Cadastro para ONGs</h3>
+        <p id="cadDescricao">Acesse o formulário completo de cadastro para ONGs.</p>
+        <button class="botao botao-verde botao-grande" id="cadBotao" type="button">Criar conta ONG →</button>
+        <p class="pequeno">Já tem conta? <a href="#" id="cadEntrar"><strong>Entrar agora</strong></a></p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== TELA: LOGIN / CADASTRO ===== -->
+<div class="tela" id="tela-auth" hidden>
+  <div class="auth">
+    <aside class="auth-lateral"><a href="#inicio" class="logo auth-logo" data-tela="inicio"><img class="logo-img" src="imagens/Logo Laranja 2.png" alt="">Juntos à Mesa</a><div class="auth-texto">
+      <p class="auth-slogan">Alimentos que sobram, <em>vidas que precisam.</em></p>
+      <p>Conectamos estabelecimentos a ONGs combatendo o desperdício e a fome com tecnologia e comunidade.</p>
+    </div></aside>
+    <div class="auth-formulario">
+      <a href="#inicio" class="voltar" data-tela="inicio">← Voltar ao site</a>
+
+      <form id="formLogin" novalidate>
+        <h1>Entrar</h1>
+        <p class="pequeno">Acesse sua conta na plataforma.</p>
+        <label>E-mail<input type="email" id="loginEmail" name="email" required placeholder="seu@email.com" autocomplete="email"></label>
+        <label>Senha<input type="password" id="loginSenha" name="senha" required placeholder="Sua senha" autocomplete="current-password"></label>
+        <button type="button" class="link" id="esqueciSenha">Esqueci minha senha</button>
+        <p class="erro" id="loginErro" role="alert"></p>
+        <button class="botao botao-verde botao-bloco" type="submit">Entrar</button>
+        <p class="pequeno centro">Ainda não tem uma conta? <a href="#" data-ir="cadastro"><strong>Criar conta</strong></a></p>
+      </form>
+
+      <form id="formRedefinir" novalidate hidden>
+        <h1>Redefinir senha</h1>
+        <p class="pequeno">Informe o e-mail da conta e crie uma nova senha forte.</p>
+        <label>E-mail<input type="email" id="redEmail" placeholder="seu@email.com" autocomplete="email"></label>
+        <div class="duas-colunas">
+          <label>Nova senha<input type="password" id="redSenha" placeholder="Crie uma senha forte" autocomplete="new-password"></label>
+          <label>Confirmar senha<input type="password" id="redSenha2" placeholder="Repita a senha" autocomplete="new-password"></label>
         </div>
-        <div class="map-tag">São Paulo, SP · 6 pontos ativos</div>
-      </div>
+        <div class="forca" id="forcaRedefinir"><div class="forca-barra"><span></span></div><small></small></div>
+        <p class="erro" id="redErro" role="alert"></p>
+        <button class="botao botao-verde botao-bloco" type="submit">Salvar nova senha</button>
+        <p class="pequeno centro"><a href="#" data-ir="login"><strong>Voltar ao login</strong></a></p>
+      </form>
+
+      <form id="formCadastro" novalidate hidden>
+        <h1>Criar conta</h1><p class="pequeno">Preencha os dados para solicitar seu acesso.</p>
+        <div class="alternador cheio" data-alternador id="cadAlternador">
+          <button type="button" class="ativo" data-tipo="ong">🤝 Sou uma ONG</button>
+          <button type="button" data-tipo="doador">🏪 Sou um Doador</button>
+        </div>
+        <div class="duas-colunas"><label><span id="rotuloNome">Nome da ONG</span><input type="text" id="cadNome" name="nome" autocomplete="organization" required placeholder="Instituto Solidário"></label>
+        <label>CNPJ<input type="text" id="cadCnpj" name="cnpj" autocomplete="off" required inputmode="numeric" placeholder="00.000.000/0001-00"></label></div>
+        <div class="duas-colunas"><label>Responsável<input type="text" id="cadResponsavel" name="responsavel" autocomplete="name" required placeholder="Nome completo"></label>
+        <label>Telefone (WhatsApp)<input type="tel" id="cadTelefone" name="telefone" autocomplete="tel" required placeholder="(11) 99999-9999"></label></div>
+        <div class="duas-colunas"><label>Bairro ou CEP<input type="text" id="cadBairro" name="bairro" autocomplete="address-level2" required placeholder="Ex.: Pinheiros"></label>
+        <label>E-mail<input type="email" id="cadEmail" name="email" autocomplete="email" required placeholder="contato@exemplo.org"></label></div>
+        <div class="duas-colunas">
+          <label>Senha<input type="password" id="cadSenha" name="senha" autocomplete="new-password" required placeholder="Crie uma senha forte"></label>
+          <label>Confirmar senha<input type="password" id="cadSenha2" name="confirmarSenha" autocomplete="new-password" required placeholder="Repita a senha"></label>
+        </div>
+        <div class="forca" id="forcaCadastro"><div class="forca-barra"><span></span></div><small></small></div>
+        <label class="checar"><input type="checkbox" id="cadTermos" name="termos" required> Concordo com os Termos de Uso e a Política de Privacidade.</label>
+        <p class="erro" id="cadErro" role="alert"></p>
+        <button class="botao botao-verde botao-bloco" id="cadEnviar" type="submit">Criar conta como ONG</button>
+        <p class="pequeno centro">Já tem uma conta? <a href="#" data-ir="login"><strong>Entrar</strong></a></p>
+      </form>
     </div>
-  </section>
- 
-  <!-- ============ DOAÇÕES EM ABERTO ============ -->
-  <section class="donations" id="doacoes">
-    <div class="container">
-      <p class="eyebrow">Disponíveis Agora</p>
-      <h2 class="section-title">Doações em aberto</h2>
+  </div>
+</div>
 
-      <div class="empty-state empty-state--bordered">
-        <span class="empty-state__icon">🍽️</span>
-        <h3>Seja o primeiro doador</h3>
-        <p>Ainda não há doações cadastradas por aqui. Assim que um estabelecimento registrar o primeiro excedente, ele vai aparecer nesta seção.</p>
-        <button class="btn btn-primary" id="btnPrimeiraDoacao" type="button">Quero doar</button>
-      </div>
+<!-- ===== TELA: PAINEL DA ONG ===== -->
+<div class="tela" id="tela-ong" hidden>
+  <section class="painel conteiner">
+    <h1 class="titulo">Alimentos Disponíveis</h1>
+    <p class="texto-apoio">Agende a retirada dos itens disponíveis perto de você.</p>
+    <dl class="metricas" id="ongMetricas"></dl>
+    <div class="filtros">
+      <input type="text" id="ongBusca" placeholder="Buscar alimento ou estabelecimento..." aria-label="Buscar">
+      <label class="checar"><input type="checkbox" id="ongUrgentes"> Apenas urgentes</label>
     </div>
+    <div class="categorias" id="ongCategorias"></div>
+    <div class="grade-cartoes" id="ongLista"></div>
   </section>
+</div>
 
-  <!-- ============ PARCEIROS ============ -->
-  <section class="partners" id="parceiros">
-    <div class="container">
-      <p class="eyebrow eyebrow--center eyebrow--light">Parceiros</p>
-      <h2 class="section-title section-title--center section-title--light">ONGs que já fazem parte</h2>
-
-      <div class="empty-state">
-        <span class="empty-state__icon">🤝</span>
-        <h3>Seja o primeiro parceiro</h3>
-        <p>Ainda não há ONGs parceiras cadastradas. Junte-se a nós desde o início e ajude a construir essa rede.</p>
-        <button class="btn btn-dark" id="btnSerParceiro" type="button">Quero ser parceiro</button>
-      </div>
+<!-- ===== TELA: PAINEL DA EMPRESA ===== -->
+<div class="tela" id="tela-empresa" hidden>
+  <section class="painel conteiner">
+    <div class="painel-topo">
+      <div><h1 class="titulo">Minhas Doações</h1><p class="texto-apoio">Cadastre alimentos próximos ao vencimento para doação.</p></div>
+      <button class="botao botao-primario" id="btnNovoAlimento" type="button">+ Adicionar Alimento</button>
     </div>
-  </section>
+    <dl class="metricas" id="empMetricas"></dl>
 
-  <!-- ============ SOBRE (breve) ============ -->
-  <section class="about" id="sobre">
-    <div class="container about-inner">
-      <p class="eyebrow">Sobre</p>
-      <h2 class="section-title">Combatendo o desperdício, um prato por vez</h2>
-      <p class="section-lead">O Juntos à Mesa nasceu para reduzir o desperdício de alimentos e a insegurança alimentar, conectando quem tem excedentes a quem precisa deles — em conformidade com os Objetivos de Desenvolvimento Sustentável da ONU: ODS-2 (Fome Zero), ODS-12 (Consumo Responsável) e ODS-17 (Parcerias).</p>
-    </div>
-  </section>
-
-  <!-- ============ CADASTRO (CTA final) ============ -->
-  <section class="cta-signup" id="cadastro">
-    <div class="container cta-signup__inner">
-      <h2 class="section-title section-title--center">Pronto para fazer parte?</h2>
-      <p class="section-lead section-lead--center">Cadastre-se gratuitamente — é rápido e seguro.</p>
-
-      <div class="toggle-pill" id="cadastroToggle" role="tablist" aria-label="Tipo de cadastro">
-        <button type="button" class="toggle-pill__btn is-active" data-audience="ong" role="tab" aria-selected="true">Sou uma ONG</button>
-        <button type="button" class="toggle-pill__btn" data-audience="doador" role="tab" aria-selected="false">Sou um Doador</button>
+    <form class="cartao formulario-alimento" id="formAlimento" novalidate hidden>
+      <h3>Novo Alimento para Doação</h3>
+      <label>Nome do alimento *<input type="text" id="alNome" placeholder="Ex.: Pão francês, Legumes sortidos..."></label>
+      <div class="duas-colunas">
+        <label>Quantidade *<div class="qtd-unidade"><input type="number" id="alQtd" min="1" placeholder="Ex.: 10"><select id="alUnidade"><option value="kg">kg</option><option value="unidades">unidades</option><option value="caixas">caixas</option></select></div></label>
+        <label>Data/hora de vencimento *<input type="text" id="alValidade" placeholder="Ex.: Hoje, 18h · Amanhã, 10h"></label>
       </div>
-
-      <div class="cadastro-card" id="cadastroCard">
-        <h3 id="cadastroCardTitle">Cadastro para ONGs</h3>
-        <p id="cadastroCardDesc">Acesse o formulário completo de cadastro para ONGs.</p>
-        <button class="btn btn-dark btn-lg" id="cadastroCardBtn" type="button">Criar conta ONG →</button>
-        <p class="auth-switch">Já tem conta? <strong>Entrar agora</strong></p>
+      <div class="duas-colunas">
+        <label>Categoria<select id="alCategoria"></select></label>
+        <label class="checar"><input type="checkbox" id="alUrgente"> Marcar como urgente (expira hoje)</label>
       </div>
-    </div>
+      <label class="upload">Foto do alimento (opcional)<span id="alFotoTexto">📷 Clique para enviar uma foto</span><input type="file" id="alFoto" accept="image/*"></label>
+      <p class="erro" id="alErro" role="alert"></p>
+      <div class="linha-botoes">
+        <button class="botao botao-primario" type="submit">Publicar Doação</button>
+        <button class="botao botao-contorno" id="alCancelar" type="button">Cancelar</button>
+      </div>
+    </form>
+
+    <h3 class="subtitulo">Alimentos cadastrados</h3>
+    <div class="grade-cartoes" id="empLista"></div>
   </section>
+</div>
 
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-     <a href="#home" class="logo logo--footer">
-    <img src="imagens/Logo Laranja 2.png" alt="Logo Juntos à Mesa" class="footer-logo-img">
-    <span class="footer-logo-text">Juntos à Mesa</span>
-</a>
-      <p>Conectando excedentes alimentares a quem precisa. ODS-2 · ODS-12 · ODS-17.</p>
-    </div>
-
-    <div class="footer-col">
-      <h4>Plataforma</h4>
-      <a href="#como-funciona">Como Funciona</a>
-      <a href="#mapa">Mapa de Doações</a>
-      <a href="#cadastro" data-audience-link="ong">Cadastrar ONG</a>
-      <a href="#cadastro" data-audience-link="doador">Cadastrar Doador</a>
-    </div>
-
-    <div class="footer-col">
-      <h4>Suporte</h4>
-      <a href="#sobre">Central de Ajuda</a>
-      <a href="#sobre">Fale Conosco</a>
-      <a href="#sobre">Privacidade</a>
-      <a href="#sobre">Termos de Uso</a>
-    </div>
+<!-- ===== RODAPÉ ===== -->
+<footer class="rodape">
+  <div class="conteiner rodape-interno">
+    <div><a href="#inicio" class="logo" data-tela="inicio"><img class="logo-img" src="imagens/Logo Laranja 2.png" alt="">Juntos à Mesa</a><p>Conectando excedentes alimentares a quem precisa. ODS-2 · ODS-12 · ODS-17.</p></div>
+    <div><h2 class="rodape-titulo">Plataforma</h2><a href="#como-funciona" data-tela="inicio">Como Funciona</a><a href="#mapa" data-tela="inicio">Mapa de Doações</a><a href="#" data-cadastro="ong">Cadastrar ONG</a><a href="#" data-cadastro="doador">Cadastrar Doador</a></div>
+    <div><h2 class="rodape-titulo">Suporte</h2><a href="#sobre" data-tela="inicio">Central de Ajuda</a><a href="#sobre" data-tela="inicio">Fale Conosco</a><a href="#sobre" data-tela="inicio">Privacidade</a><a href="#sobre" data-tela="inicio">Termos de Uso</a></div>
+    <div><h2 class="rodape-titulo">Controle do projeto</h2><button type="button" class="link-rodape" id="btnGerarDados">Gerar dados de teste</button><button type="button" class="link-rodape" id="btnLimparDados">Limpar dados</button></div>
   </div>
+<div class="conteiner rodape-base"><span>© 2026 Juntos à Mesa. Todos os direitos reservados.</span><span>Feito com ♥ para reduzir o desperdício alimentar</span></div>
 </footer>
 
-<!-- ============ BOTÃO FLUTUANTE DE AJUDA ============ -->
-<button class="help-fab" id="helpButton" type="button" aria-label="Ver instruções de novo">?</button>
+<div class="avisos" id="avisos" role="status" aria-live="polite"></div>
+<div class="fundo-modal" id="modalConfirmar" hidden>
+  <div class="modal modal-centro" role="alertdialog" aria-modal="true" aria-labelledby="confirmarTitulo">
+    <h2 id="confirmarTitulo">Confirmar ação</h2>
+    <p id="confirmarTexto"></p>
+    <div class="linha-botoes">
+      <button class="botao botao-contorno" id="confirmarNao" type="button">Cancelar</button>
+      <button class="botao botao-primario" id="confirmarSim" type="button">Confirmar</button>
+    </div>
+  </div>
+</div>
 
-<script src="script.js"></script>
+<button class="botao-ajuda" id="botaoAjuda" type="button" aria-label="Ver instruções de novo">?</button>
+
 </body>
 </html>
