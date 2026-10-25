@@ -1,14 +1,14 @@
-/* ===== PALETA 60-30-10 E VARIÁVEIS ===== */
+/* PALETA 60-30-10 E VARIÁVEIS */
 :root {
-  --cor-creme: #FDFBF7;          /* 60% — fundo dominante */
-  --cor-bege: #F2EBDC;           /* variação para seções alternadas */
-  --cor-verde: #2D4A3E;          /* 30% — cabeçalho, menu, estrutura */
-  --cor-verde-escuro: #1E322A;   /* seções cheias e rodapé */
-  --cor-laranja: #E85A2A;        /* 10% — botões de ação e destaques */
-  --cor-laranja-escuro: #C94A1E; /* hover do laranja */
-  --cor-amarelo: #F4A261;        /* detalhes: ícones e etiquetas */
+  --cor-creme: #FDFBF7;
+  --cor-bege: #F2EBDC;
+  --cor-verde: #2D4A3E;
+  --cor-verde-escuro: #1E322A;
+  --cor-laranja: #E85A2A;
+  --cor-laranja-escuro: #C94A1E;
+  --cor-amarelo: #F4A261;
   --cor-texto: #20241F;
-  --cor-texto-suave: #5A655B;  /* contraste mínimo AA sobre o creme */
+  --cor-texto-suave: #5A655B;
   --cor-borda: #E4DCC9;
   --cor-branco: #FFFFFF;
   --cor-zap: #25D366;
@@ -20,7 +20,7 @@
   --altura-cabecalho: 64px;
 }
 
-/* ===== BASE (celular primeiro) ===== */
+/* BASE (celular primeiro) */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: var(--altura-cabecalho); }
 body { margin: 0; font-family: var(--fonte-corpo); color: var(--cor-texto); background: var(--cor-creme); line-height: 1.55; }
@@ -33,7 +33,7 @@ a { color: inherit; text-decoration: none; }
 .centro { text-align: center; }
 .pequeno { font-size: .88rem; color: var(--cor-texto-suave); }
 
-/* ===== TIPOGRAFIA UTILITÁRIA ===== */
+/* TIPOGRAFIA UTILITÁRIA */
 .sobretitulo { font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--cor-laranja-escuro); margin-bottom: 8px; }
 .sobretitulo.amarelo { color: var(--cor-amarelo); }
 .titulo { font-size: clamp(1.6rem, 6vw, 2.3rem); }
@@ -41,7 +41,7 @@ a { color: inherit; text-decoration: none; }
 .subtitulo { margin: 28px 0 14px; }
 .texto-apoio { color: var(--cor-texto-suave); }
 
-/* ===== BOTÕES ===== */
+/* BOTÕES */
 .botao { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 11px 20px; border-radius: var(--raio-pilula); background: transparent; border: 1.5px solid transparent; font: 600 .95rem var(--fonte-corpo); cursor: pointer; transition: background .15s, color .15s; }
 .botao-grande { padding: 14px 26px; }
 .botao-bloco { width: 100%; margin-top: 10px; }
@@ -57,7 +57,7 @@ a { color: inherit; text-decoration: none; }
 .botao-zap { background: var(--cor-zap); color: #fff; }
 :focus-visible { outline: 2px solid var(--cor-laranja); outline-offset: 2px; }
 
-/* ===== CABEÇALHO E MENU ===== */
+/* CABEÇALHO E MENU */
 .cabecalho { position: sticky; top: 0; z-index: 40; height: var(--altura-cabecalho); background: var(--cor-verde); display: flex; align-items: center; }
 .cabecalho-interno { display: flex; align-items: center; justify-content: space-between; }
 .logo { display: flex; align-items: center; gap: 10px; color: #fff; font: 700 1.2rem var(--fonte-titulo); }
@@ -72,7 +72,7 @@ a { color: inherit; text-decoration: none; }
 .hamburguer { display: flex; flex-direction: column; gap: 5px; width: 34px; padding: 6px; background: none; border: 0; cursor: pointer; }
 .hamburguer span { height: 2px; background: var(--cor-creme); border-radius: 2px; }
 
-/* ===== SEÇÕES ===== */
+/* SEÇÕES */
 .secao { padding: 52px 0; }
 .fundo-bege { background: var(--cor-bege); }
 .fundo-verde { background: var(--cor-verde); }
@@ -84,7 +84,7 @@ a { color: inherit; text-decoration: none; }
 .aviso p { margin: 0; font-size: .9rem; }
 .aviso strong { color: var(--cor-verde); }
 
-/* ===== CARTÕES ===== */
+/* CARTÕES */
 .cartao { background: var(--cor-branco); border: 1px solid var(--cor-borda); border-radius: 24px; padding: 24px; }
 .grade-passos { list-style: none; padding: 0; display: grid; gap: 16px; margin: 24px 0 0; }
 .grade-cartoes { display: grid; gap: 16px; margin-top: 24px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
@@ -102,13 +102,11 @@ a { color: inherit; text-decoration: none; }
 .alimento-corpo .botao { margin-top: auto; font-size: .88rem; }
 .parceiro h3 { font-size: 1.05rem; margin: 0 0 4px; }
 
-/* ===== MÉTRICAS (STAT/KPI CARDS) ===== */
+/* MÉTRICAS (STAT/KPI CARDS) */
 .metricas { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
 .metrica { background: var(--cor-branco); border-radius: 12px; padding: 14px 16px; box-shadow: var(--sombra); }
-.metrica strong { display: block; font-size: 1.5rem; }
-.metrica span { font-size: .8rem; color: var(--cor-texto-suave); }
 
-/* ===== MAPA LOCAL ===== */
+/* MAPA LOCAL */
 .grade-mapa { display: grid; gap: 28px; }
 .legenda { display: flex; gap: 18px; margin: 16px 0; font-size: .88rem; }
 .ponto { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; }
@@ -124,19 +122,19 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
 .pino.ong { background: var(--cor-verde); }
 .mapa-etiqueta { position: absolute; right: 12px; bottom: 12px; background: #fff; padding: 6px 14px; border-radius: var(--raio-pilula); font-size: .78rem; font-weight: 600; z-index: 2; box-shadow: var(--sombra); }
 
-/* ===== FILTROS E CATEGORIAS ===== */
+/* FILTROS E CATEGORIAS */
 .categorias { display: flex; gap: 8px; overflow-x: auto; padding: 12px 0; }
 .categorias button { flex: none; padding: 6px 14px; border-radius: var(--raio-pilula); border: 1px solid var(--cor-borda); background: #fff; font: 500 .85rem var(--fonte-corpo); cursor: pointer; }
 .categorias button.ativo { background: var(--cor-verde); color: #fff; border-color: var(--cor-verde); }
 
-/* ===== ALTERNADOR ONG / DOADOR ===== */
+/* ALTERNADOR ONG / DOADOR */
 .alternador { display: inline-flex; margin: 20px auto 0; background: #fff; border: 1px solid var(--cor-borda); border-radius: var(--raio-pilula); padding: 4px; }
 .alternador.cheio { display: flex; margin: 14px 0; }
 .alternador button { flex: 1; padding: 9px 18px; border: 0; background: none; border-radius: var(--raio-pilula); font: 600 .88rem var(--fonte-corpo); color: var(--cor-texto-suave); cursor: pointer; }
 .alternador button.ativo[data-tipo=ong] { background: var(--cor-verde); color: #fff; }
 .alternador button.ativo[data-tipo=doador] { background: var(--cor-laranja); color: #fff; }
 
-/* ===== LOGIN / CADASTRO ===== */
+/* LOGIN / CADASTRO */
 .auth-lateral { background: var(--cor-verde-escuro); color: var(--cor-creme); padding: 32px 20px; }
 .auth-lateral em { color: var(--cor-laranja); }
 .auth-formulario { padding: 24px 20px 48px; max-width: 520px; width: 100%; margin: 0 auto; background: var(--cor-bege); }
@@ -149,7 +147,7 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
 .erro { color: #C0392B; font-size: .85rem; min-height: 1.2em; margin: 8px 0 0; }
 .duas-colunas { display: grid; gap: 0 12px; }
 
-/* ===== PAINÉIS ===== */
+/* PAINÉIS */
 .painel { padding-top: 32px; padding-bottom: 52px; }
 .painel-topo { display: flex; flex-direction: column; gap: 12px; }
 .formulario-alimento { margin-bottom: 8px; }
@@ -157,7 +155,7 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
 .formulario-alimento label input, .formulario-alimento label select { margin-top: 5px; font-weight: 400; }
 .linha-botoes { display: flex; gap: 10px; margin-top: 12px; }
 
-/* ===== MODAIS ===== */
+/* MODAIS */
 .fundo-modal { position: fixed; inset: 0; z-index: 100; background: rgba(20,26,21,.55); display: flex; align-items: flex-end; justify-content: center; }
 .modal { position: relative; width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; background: #fff; border-radius: 24px 24px 0 0; padding: 28px 22px 22px; }
 .modal-fechar { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; border: 0; border-radius: 50%; background: none; cursor: pointer; }
@@ -176,7 +174,7 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
 .modal-rodape { display: flex; gap: 10px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--cor-borda); }
 .modal-rodape .botao { flex: 1; }
 
-/* ===== RODAPÉ E BOTÃO DE AJUDA ===== */
+/* RODAPÉ E BOTÃO DE AJUDA */
 .rodape { background: var(--cor-verde-escuro); color: var(--cor-creme); padding: 44px 0 32px; }
 .rodape-interno { display: grid; gap: 28px; }
 .rodape p { color: rgba(253,251,247,.65); font-size: .88rem; margin-top: 12px; }
@@ -184,7 +182,7 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
 .rodape-interno a:not(.logo) { display: block; padding: 5px 0; font-size: .9rem; color: rgba(253,251,247,.75); }
 .botao-ajuda { position: fixed; right: 18px; bottom: 18px; z-index: 50; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--cor-verde-escuro); color: var(--cor-creme); font: 700 1.1rem var(--fonte-corpo); box-shadow: var(--sombra); cursor: pointer; }
 
-/* ===== TABLET (a partir de 640px) ===== */
+/* TABLET (a partir de 640px) */
 @media (min-width: 640px) {
   .grade-passos { grid-template-columns: repeat(2, 1fr); }
   .metricas { grid-template-columns: repeat(4, 1fr); }
@@ -195,7 +193,7 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
   .painel-topo { flex-direction: row; justify-content: space-between; align-items: center; }
 }
 
-/* ===== COMPUTADOR (a partir de 900px) ===== */
+/* COMPUTADOR (a partir de 900px) */
 @media (min-width: 960px) {
   .hamburguer { display: none; }
   .menu, .menu.aberto { display: flex; flex-direction: row; align-items: center; gap: 24px; position: static; background: none; padding: 0; box-shadow: none; }
@@ -211,7 +209,7 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
   .auth-formulario { max-width: none; padding: 40px 60px; }
 }
 
-/* ===== AJUSTES VISUAIS (alinhados ao protótipo da 2ª entrega) ===== */
+/* AJUSTES VISUAIS (alinhados ao protótipo da 2ª entrega) */
 .rodape-titulo, .modal h2, .modal h3 { color: inherit; }
 .modal h2, .modal h3 { color: var(--cor-verde-escuro); }
 .rodape-titulo { color: var(--cor-laranja); }
@@ -243,7 +241,6 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
 .busca input, .filtros input[type=text] { border-radius: var(--raio-pilula); padding: 13px 18px; }
 .filtros .checar { background: #fff; border: 1px solid var(--cor-borda); border-radius: var(--raio-pilula); padding: 12px 18px; }
 .metrica { border-radius: 18px; padding: 20px 24px; box-shadow: 0 6px 18px -10px rgba(32,36,31,.15); }
-.metrica strong { font: 600 1.7rem var(--fonte-corpo); }
 .secao-topo { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
 .ver-todas { color: var(--cor-laranja-escuro); text-decoration: underline; font-size: .9rem; white-space: nowrap; margin-bottom: 14px; }
 .linha-total { grid-column: 1 / -1; text-align: center; }
@@ -335,7 +332,7 @@ input, select { width: 100%; padding: 12px 14px; border: 1px solid var(--cor-bor
 .slides-pontos span { width: 8px; height: 8px; border-radius: 8px; background: rgba(255,255,255,.5); transition: width .3s, background .3s; }
 .slides-pontos span.ativo { width: 22px; background: #fff; }
 
-/* ===== ACESSIBILIDADE E FEEDBACK (boas práticas das aulas 08, 10 e 13) ===== */
+/* ACESSIBILIDADE E FEEDBACK (boas práticas das aulas 08, 10 e 13) */
 img { max-width: 100%; height: auto; }
 :focus-visible { outline: 3px solid rgba(232,90,42,.45); outline-offset: 2px; }
 .pular { position: absolute; left: 8px; top: -60px; z-index: 200; padding: 10px 16px; border-radius: 8px; background: var(--cor-verde-escuro); color: #fff; }
@@ -359,6 +356,9 @@ input.valido { border-color: #2E9E5B; }
 
 /* Marca + nome da conta no cabeçalho: "Juntos à Mesa | Nome" */
 .marca { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.nome-conta { line-height: 24px; transform: translateY(1px); /* compensa a diferença de métrica entre as fontes Inter e Fraunces */ max-width: 32vw; padding-left: 12px; border-left: 1px solid rgba(253,251,247,.45); color: #fff; font-size: .95rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nome-conta { line-height: 24px; transform: translateY(1px); max-width: 32vw; padding-left: 12px; border-left: 1px solid rgba(253,251,247,.45); color: #fff; font-size: .95rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 /* Alinhamento fino do cabeçalho: logo e "Juntos à Mesa" 1px acima, na linha dos itens do menu */
 .marca .logo { transform: translateY(-1px); }
+
+/* Mapa: só visual por enquanto (sem pinos nem etiqueta) */
+.mapa-etiqueta:empty { display: none; }
