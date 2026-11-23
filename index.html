@@ -132,7 +132,8 @@
           <button class="botao botao-primario" id="mapaBuscar" type="button">Buscar</button>
         </div>
       </div>
-      <div class="mapa" id="mapa-area"><i class="quadra q1"></i><i class="quadra q2"></i><i class="quadra q3"></i><i class="quadra q4"></i><div class="mapa-etiqueta" id="mapaEtiqueta"></div></div>
+      <div class="mapa-coluna"><div class="mapa" id="mapa-area"><i class="quadra q1"></i><i class="quadra q2"></i><i class="quadra q3"></i><i class="quadra q4"></i><div class="mapa-etiqueta" id="mapaEtiqueta" aria-live="polite"></div></div>
+      <div class="mapa-detalhe" id="mapaDetalhe" hidden></div></div>
     </div>
   </section>
 
@@ -190,6 +191,7 @@
       <form id="formLogin" novalidate>
         <h1>Entrar</h1>
         <p class="pequeno">Acesse sua conta na plataforma.</p>
+        <p class="acesso-negado" id="loginNegado" role="alert" hidden></p>
         <label>E-mail<input type="email" id="loginEmail" name="email" required placeholder="seu@email.com" autocomplete="email"></label>
         <label>Senha<input type="password" id="loginSenha" name="senha" required placeholder="Sua senha" autocomplete="current-password"></label>
         <button type="button" class="link" id="esqueciSenha">Esqueci minha senha</button>
@@ -229,7 +231,7 @@
           <label>Confirmar senha<input type="password" id="cadSenha2" name="confirmarSenha" autocomplete="new-password" required placeholder="Repita a senha"></label>
         </div>
         <div class="forca" id="forcaCadastro"><div class="forca-barra"><span></span></div><small></small></div>
-        <label class="checar"><input type="checkbox" id="cadTermos" name="termos" required> Concordo com os Termos de Uso e a Política de Privacidade.</label>
+        <label class="checar"><input type="checkbox" id="cadTermos" name="termos" required> Concordo com os <a href="#" class="link-texto" data-legal="termos">Termos de Uso</a> e a <a href="#" class="link-texto" data-legal="privacidade">Política de Privacidade</a>.</label>
         <p class="erro" id="cadErro" role="alert"></p>
         <button class="botao botao-verde botao-bloco" id="cadEnviar" type="submit">Criar conta como ONG</button>
         <p class="pequeno centro">Já tem uma conta? <a href="#" data-ir="login"><strong>Entrar</strong></a></p>
@@ -242,6 +244,7 @@
 <div class="tela" id="tela-ong" hidden>
   <section class="painel conteiner">
     <h1 class="titulo">Alimentos Disponíveis</h1>
+    <p class="boas-vindas" id="ongBoasVindas" role="status"></p>
     <p class="texto-apoio">Agende a retirada dos itens disponíveis perto de você.</p>
     <dl class="metricas" id="ongMetricas"></dl>
     <div class="filtros">
@@ -250,6 +253,7 @@
     </div>
     <div class="categorias" id="ongCategorias"></div>
     <div class="grade-cartoes" id="ongLista"></div>
+    <section class="jwt" id="jwtOng" aria-label="Autenticação com JWT"></section>
   </section>
 </div>
 
@@ -260,6 +264,7 @@
       <div><h1 class="titulo">Minhas Doações</h1><p class="texto-apoio">Cadastre alimentos próximos ao vencimento para doação.</p></div>
       <button class="botao botao-primario" id="btnNovoAlimento" type="button">+ Adicionar Alimento</button>
     </div>
+    <p class="boas-vindas" id="empBoasVindas" role="status"></p>
     <dl class="metricas" id="empMetricas"></dl>
 
     <form class="cartao formulario-alimento" id="formAlimento" novalidate hidden>
@@ -283,6 +288,233 @@
 
     <h3 class="subtitulo">Alimentos cadastrados</h3>
     <div class="grade-cartoes" id="empLista"></div>
+    <section class="jwt" id="jwtEmpresa" aria-label="Autenticação com JWT"></section>
+  </section>
+</div>
+
+
+<!-- TELA: PRIVACIDADE E TERMOS DE USO -->
+<div class="tela" id="tela-legal" hidden>
+  <section class="legal conteiner">
+    <button class="botao botao-contorno" id="legalVoltar" type="button">← Voltar</button>
+    <p class="sobretitulo">Juntos à Mesa · Versão 1.0 · 12 de novembro de 2026</p>
+    <h1 class="titulo">Política de Privacidade e Termos de Uso</h1>
+    <p class="texto-apoio">PI: Desenvolvimento de Sistemas Web (218040) · PUC-Campinas<br>Caio Marques Camargo · Gabriel Panini Cruvinel de Oliveira Filho · Miguel Cambuy Ribeiro</p>
+    <div class="aviso"><span>ℹ️</span><p><strong>Em poucas palavras.</strong> O Juntos à Mesa é um protótipo acadêmico (MVP) que roda inteiramente no seu navegador. Não existe servidor: os dados ficam no localStorage do seu dispositivo e não são enviados a nós. Para contato entre ONG e Doador usamos o WhatsApp. Por ser um protótipo, recomendamos usar apenas dados fictícios ou de baixa sensibilidade.</p></div>
+
+    <div class="alternador legal-abas" role="group" aria-label="Documentos">
+      <button type="button" class="ativo" data-legal-aba="privacidade" aria-pressed="true">Política de Privacidade</button>
+      <button type="button" data-legal-aba="termos" aria-pressed="false">Termos de Uso</button>
+      <button type="button" data-legal-aba="anexo" aria-pressed="false">Resumo dos dados</button>
+    </div>
+
+    <!-- PARTE I: POLÍTICA DE PRIVACIDADE -->
+    <div data-painel="privacidade">
+      <h2>Parte I — Política de Privacidade</h2>
+      <p class="pequeno">Em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 — LGPD).</p>
+      <ol class="legal-sumario">
+        <li><a href="#priv-1">Introdução e escopo</a></li><li><a href="#priv-2">Quem é o responsável pelos dados</a></li>
+        <li><a href="#priv-3">Quais dados coletamos</a></li><li><a href="#priv-4">Para que usamos os dados e em que base legal</a></li>
+        <li><a href="#priv-5">Onde os dados ficam armazenados</a></li><li><a href="#priv-6">Compartilhamento de dados</a></li>
+        <li><a href="#priv-7">Segurança da informação</a></li><li><a href="#priv-8">Direitos do titular</a></li>
+        <li><a href="#priv-9">Cookies, fontes externas e rastreamento</a></li><li><a href="#priv-10">Crianças e adolescentes</a></li>
+        <li><a href="#priv-11">Alterações e contato</a></li>
+      </ol>
+
+      <article class="legal-secao" id="priv-1"><h3>1. Introdução e escopo</h3>
+        <p>Esta Política explica como o Juntos à Mesa trata os dados pessoais de quem usa a plataforma. O Juntos à Mesa é uma plataforma web que conecta estabelecimentos comerciais com excedentes alimentares (Doadores) a ONGs e entidades assistenciais cadastradas (ONGs), facilitando o agendamento da retirada de alimentos antes que percam a validade. Ela se aplica ao site, aos painéis de ONG e de Doador, ao formulário de cadastro, ao mapa local e ao agendamento via WhatsApp.</p>
+        <p>O projeto foi desenvolvido no âmbito da disciplina PI: Desenvolvimento de Sistemas Web (PUC-Campinas) e encontra-se na fase de MVP. Este documento descreve o tratamento de dados como ele realmente ocorre hoje, incluindo as limitações técnicas da versão atual.</p></article>
+
+      <article class="legal-secao" id="priv-2"><h3>2. Quem é o responsável pelos dados</h3>
+        <p>O grupo de desenvolvimento do projeto — Caio Marques Camargo, Gabriel Panini Cruvinel de Oliveira Filho e Miguel Cambuy Ribeiro — atua como responsável pela plataforma e por esta Política. Como o MVP não possui servidor, os dados cadastrados permanecem no dispositivo de quem os inseriu; o grupo não recebe, não armazena nem tem acesso remoto a esses dados.</p>
+        <p><strong>Canal de contato:</strong> [e-mail do grupo a ser definido antes da publicação]. Enquanto não houver canal oficial, solicitações podem ser feitas pelo repositório do projeto no GitHub (Juntos_a_Mesa).</p></article>
+
+      <article class="legal-secao" id="priv-3"><h3>3. Quais dados coletamos</h3>
+        <p>Coletamos apenas o necessário para o funcionamento do fluxo <em>empresa cadastra → ONG visualiza → ONG agenda → retirada confirmada</em>:</p>
+        <div class="tabela-rolagem"><table><caption class="so-leitor">Dados coletados em cada momento de uso</caption>
+          <thead><tr><th scope="col">Momento</th><th scope="col">Dados</th><th scope="col">Observações</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Cadastro (ONG ou Doador)</th><td>Nome da ONG ou do estabelecimento, CNPJ (14 dígitos), nome do responsável, telefone com DDD (WhatsApp), bairro/CEP, e-mail e senha</td><td>O e-mail é único por conta. O aceite dos Termos e desta Política é obrigatório.</td></tr>
+            <tr><th scope="row">Login e sessão</th><td>E-mail, senha e um token de sessão simulado (JWT) com prazo de validade</td><td>A sessão expira (1 hora); depois disso é preciso entrar novamente.</td></tr>
+            <tr><th scope="row">Cadastro de doações (Doador)</th><td>Nome do alimento, quantidade e unidade, categoria, data/hora de validade, marcação de urgência e foto opcional</td><td>Fotos são reduzidas antes de serem salvas.</td></tr>
+            <tr><th scope="row">Agendamento (ONG)</th><td>E-mail da ONG vinculado à doação agendada e mensagem pré-formatada para o WhatsApp (alimento, quantidade e identificação da ONG)</td><td>O dia e o horário finais são combinados na conversa pelo WhatsApp.</td></tr>
+            <tr><th scope="row">Busca no mapa</th><td>Texto digitado de bairro ou CEP</td><td>Processado apenas no navegador; não usamos geolocalização do dispositivo.</td></tr>
+          </tbody></table></div>
+        <p class="legal-nota"><strong>O que não coletamos:</strong> não pedimos dados pessoais sensíveis (art. 5º, II, da LGPD), documentos pessoais, dados bancários, nem localização em tempo real. Não há ferramentas de analytics, publicidade ou rastreamento de comportamento.</p></article>
+
+      <article class="legal-secao" id="priv-4"><h3>4. Para que usamos os dados e em que base legal</h3>
+        <div class="tabela-rolagem"><table><caption class="so-leitor">Finalidades e bases legais</caption>
+          <thead><tr><th scope="col">Finalidade</th><th scope="col">Base legal (LGPD, art. 7º)</th></tr></thead>
+          <tbody>
+            <tr><td>Criar e manter a conta, autenticar o acesso e direcionar ao painel do perfil correto</td><td>Execução de contrato ou de procedimentos preliminares (inc. V) e consentimento (inc. I), dado no aceite dos Termos</td></tr>
+            <tr><td>Publicar doações, exibi-las às ONGs e permitir filtros e busca</td><td>Execução de contrato (inc. V)</td></tr>
+            <tr><td>Permitir que a ONG entre em contato com o Doador pelo WhatsApp e agendar a retirada</td><td>Execução de contrato (inc. V)</td></tr>
+            <tr><td>Calcular indicadores de impacto (doações ativas, quilos doados, ONGs atendidas)</td><td>Legítimo interesse (inc. IX), com dados já existentes na plataforma</td></tr>
+            <tr><td>Prevenir fraudes, duplicidade de reservas e uso indevido (por exemplo, e-mail duplicado)</td><td>Legítimo interesse (inc. IX) e proteção do crédito/segurança</td></tr>
+          </tbody></table></div>
+        <p>Os dados não são usados para publicidade, perfilamento comercial ou decisões automatizadas com efeito sobre o titular.</p></article>
+
+      <article class="legal-secao" id="priv-5"><h3>5. Onde os dados ficam armazenados</h3>
+        <p>Nesta fase o sistema não possui back-end, banco de dados ou API própria. Cadastros, doações e sessão são gravados no localStorage do navegador (chaves como <code>jm_usuarios</code>, <code>jm_doacoes</code> e <code>token</code>), com limite aproximado de 5 MB. Isso significa que:</p>
+        <ul>
+          <li>os dados existem apenas no navegador e no aparelho em que foram criados e não são compartilhados entre usuários ou dispositivos;</li>
+          <li>se o usuário limpar os dados do navegador, usar outro aparelho ou acionar o botão “Limpar dados” do rodapé, as informações são apagadas e não podem ser recuperadas por nós;</li>
+          <li>os dados permanecem salvos até que o titular os remova (prazo de retenção definido pelo próprio usuário); a sessão, por sua vez, expira automaticamente;</li>
+          <li>contas geradas pelo botão “Gerar dados de teste” são fictícias e não permitem login.</li>
+        </ul>
+        <p>Em versões futuras com servidor, esta Política será atualizada para informar local de armazenamento, prazos de retenção e eventuais operadores contratados.</p></article>
+
+      <article class="legal-secao" id="priv-6"><h3>6. Compartilhamento de dados</h3>
+        <p>Não vendemos nem cedemos dados a terceiros. O compartilhamento ocorre apenas nas situações abaixo, necessárias ao serviço:</p>
+        <ul>
+          <li><strong>Entre os perfis da plataforma:</strong> as doações publicadas (alimento, quantidade, validade, categoria, foto, nome e bairro do estabelecimento) ficam visíveis às ONGs. Ao agendar, a ONG é levada ao WhatsApp do Doador, o que torna o telefone do Doador e a identificação da ONG conhecidos entre as partes;</li>
+          <li><strong>WhatsApp (Meta Platforms):</strong> ao clicar em “Ir para o WhatsApp”, o usuário é redirecionado a um link <code>wa.me</code> com mensagem pré-preenchida. A partir daí, o tratamento passa a seguir os termos e a política de privacidade do próprio WhatsApp, fora do controle do Juntos à Mesa;</li>
+          <li><strong>Autoridades:</strong> quando exigido por lei ou ordem judicial, nos limites do que estivermos em condição de fornecer (no MVP, não temos acesso aos dados salvos nos dispositivos).</li>
+        </ul></article>
+
+      <article class="legal-secao" id="priv-7"><h3>7. Segurança da informação</h3>
+        <p>Adotamos medidas compatíveis com um protótipo acadêmico:</p>
+        <ul>
+          <li>exigência de senha forte (mínimo de 8 caracteres, com maiúscula, minúscula, número e símbolo) e indicador de força da senha no cadastro;</li>
+          <li>senhas guardadas apenas como <em>hash</em> com sal (SHA-256), e não em texto;</li>
+          <li>acesso aos painéis condicionado a autenticação, com sessão de prazo limitado;</li>
+          <li>mensagem de erro genérica no login (“e-mail ou senha incorretos”), sem indicar qual dado estava errado;</li>
+          <li>tratamento dos textos digitados pelos usuários antes de exibi-los, para evitar injeção de código (XSS);</li>
+          <li>confirmação antes da remoção de dados.</li>
+        </ul>
+        <p class="legal-nota"><strong>Limitações importantes.</strong> A autenticação é simulada no próprio navegador: o token JWT é assinado com uma chave demonstrativa e não é validado por um servidor. O hash da senha é calculado no navegador e não equivale à proteção de um servidor real. Qualquer pessoa com acesso físico ao aparelho e ao navegador pode, em tese, visualizar os dados salvos. Por isso, não use senhas que você utiliza em outros serviços e prefira dados fictícios durante demonstrações. A migração para servidor com autenticação real e verificação de documentos está prevista para versões futuras.</p>
+        <p>Em caso de incidente de segurança que possa acarretar risco ou dano relevante aos titulares, o grupo comunicará os envolvidos e, quando cabível, a Autoridade Nacional de Proteção de Dados (ANPD), conforme o art. 48 da LGPD.</p></article>
+
+      <article class="legal-secao" id="priv-8"><h3>8. Direitos do titular</h3>
+        <p>Nos termos do art. 18 da LGPD, o titular pode solicitar a qualquer momento:</p>
+        <ul>
+          <li>confirmação da existência de tratamento e acesso aos dados;</li>
+          <li>correção de dados incompletos, inexatos ou desatualizados;</li>
+          <li>anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade com a lei;</li>
+          <li>portabilidade dos dados, quando aplicável;</li>
+          <li>informação sobre com quem os dados são compartilhados;</li>
+          <li>revogação do consentimento e eliminação dos dados tratados com base nele.</li>
+        </ul>
+        <p><strong>Como exercer na prática:</strong> como os dados estão no seu dispositivo, você já tem controle direto — pode redefinir a senha pela opção “Esqueci minha senha”, remover doações cadastradas, e eliminar todas as informações limpando os dados do site no navegador. Para qualquer outra solicitação, utilize o canal de contato indicado na seção 2.</p></article>
+
+      <article class="legal-secao" id="priv-9"><h3>9. Cookies, fontes externas e rastreamento</h3>
+        <p>O site não utiliza cookies próprios nem de publicidade; o armazenamento usa o localStorage, estritamente necessário ao funcionamento (sessão, cadastros e doações). As páginas carregam as fontes tipográficas Fraunces e Inter do Google Fonts; ao fazê-lo, o navegador do usuário se conecta aos servidores do Google, que podem registrar dados técnicos como o endereço IP. O mapa é desenhado localmente por JavaScript, sem serviços externos de mapas.</p></article>
+
+      <article class="legal-secao" id="priv-10"><h3>10. Crianças e adolescentes</h3>
+        <p>A plataforma é destinada a representantes de estabelecimentos comerciais e de ONGs, maiores de 18 anos. Não coletamos intencionalmente dados de crianças e adolescentes. Caso identifiquemos esse tipo de cadastro, ele poderá ser removido, observado o melhor interesse do menor (art. 14 da LGPD).</p></article>
+
+      <article class="legal-secao" id="priv-11"><h3>11. Alterações e contato</h3>
+        <p>Esta Política pode ser atualizada conforme o projeto evoluir (por exemplo, com a criação de um servidor ou novas integrações). A versão vigente e a data de atualização constam no topo desta página. Mudanças relevantes serão informadas na própria plataforma. O uso continuado após a atualização indica ciência da nova versão.</p></article>
+    </div>
+
+    <!-- PARTE II: TERMOS DE USO -->
+    <div data-painel="termos" hidden>
+      <h2>Parte II — Termos de Uso</h2>
+      <p class="pequeno">Leia com atenção antes de criar uma conta. Ao se cadastrar, você declara que leu e concorda com estes Termos e com a Política de Privacidade.</p>
+      <ol class="legal-sumario">
+        <li><a href="#termos-1">Aceitação dos termos</a></li><li><a href="#termos-2">O que é o Juntos à Mesa</a></li>
+        <li><a href="#termos-3">Cadastro e conta</a></li><li><a href="#termos-4">Responsabilidades do Doador</a></li>
+        <li><a href="#termos-5">Responsabilidades da ONG</a></li><li><a href="#termos-6">Agendamento via WhatsApp</a></li>
+        <li><a href="#termos-7">Condutas proibidas</a></li><li><a href="#termos-8">Gratuidade e propriedade intelectual</a></li>
+        <li><a href="#termos-9">Limitação de responsabilidade e natureza de MVP</a></li><li><a href="#termos-10">Suspensão, encerramento e alterações</a></li>
+        <li><a href="#termos-11">Lei aplicável e foro</a></li>
+      </ol>
+
+      <article class="legal-secao" id="termos-1"><h3>1. Aceitação dos termos</h3>
+        <p>O cadastro exige o aceite expresso destes Termos e da Política de Privacidade (checkbox “Concordo com os Termos de Uso e a Política de Privacidade da plataforma”). Quem não concordar não deve criar conta nem utilizar as funcionalidades restritas. A navegação pela página inicial, pelo mapa e pelo catálogo é aberta a visitantes; o agendamento exige login como ONG.</p></article>
+
+      <article class="legal-secao" id="termos-2"><h3>2. O que é o Juntos à Mesa</h3>
+        <p>O Juntos à Mesa é uma plataforma web de intermediação e comunicação entre Doadores e ONGs, com o objetivo de reduzir o desperdício de alimentos e a insegurança alimentar, em alinhamento às ODS 2, 12 e 17 da ONU. A plataforma permite cadastrar doações, visualizá-las, filtrá-las, localizá-las no mapa e iniciar o agendamento da retirada. O Juntos à Mesa não é parte da doação: não compra, armazena, transporta, inspeciona ou entrega alimentos, e não garante que uma doação será efetivada.</p></article>
+
+      <article class="legal-secao" id="termos-3"><h3>3. Cadastro e conta</h3>
+        <ul>
+          <li>Existem dois perfis: ONG (entidade assistencial) e Doador (estabelecimento comercial). Somente o Doador cadastra doações e somente a ONG agenda retiradas;</li>
+          <li>o cadastro exige todos os campos preenchidos: nome da instituição, CNPJ com 14 dígitos, responsável, telefone com DDD, e-mail válido, senha forte e confirmação de senha;</li>
+          <li>cada e-mail pode ser usado em apenas uma conta;</li>
+          <li>as informações fornecidas devem ser verdadeiras, completas e atualizadas. O cadastro deve ser feito por quem tem poderes para representar a instituição;</li>
+          <li>o usuário é responsável por manter a confidencialidade de sua senha e por toda atividade realizada em sua conta, devendo encerrar a sessão (“Sair”) em dispositivos compartilhados.</li>
+        </ul></article>
+
+      <article class="legal-secao" id="termos-4"><h3>4. Responsabilidades do Doador</h3>
+        <p>Ao cadastrar uma doação, o Doador declara que:</p>
+        <ul>
+          <li>o alimento é próprio para consumo humano, está dentro do prazo de validade informado e foi armazenado, manipulado e acondicionado de acordo com as normas sanitárias aplicáveis (ANVISA e vigilância sanitária local);</li>
+          <li>as informações (nome, quantidade, unidade, categoria, validade e urgência) e a foto correspondem ao alimento efetivamente disponível;</li>
+          <li>possui legitimidade para doá-lo e manterá o item reservado até o horário combinado com a ONG;</li>
+          <li>manterá o telefone informado (WhatsApp) válido e responderá em tempo razoável às ONGs interessadas.</li>
+        </ul>
+        <p>Doações já agendadas não podem ser removidas pelo Doador; a remoção das demais exige confirmação. Eventuais alterações após o agendamento devem ser combinadas diretamente com a ONG. A legislação brasileira de combate ao desperdício e de doação de excedentes (Lei nº 14.016/2020) incentiva a prática, mas não afasta o dever de zelo com a segurança do alimento.</p></article>
+
+      <article class="legal-secao" id="termos-5"><h3>5. Responsabilidades da ONG</h3>
+        <ul>
+          <li>utilizar os alimentos recebidos exclusivamente para fins assistenciais e de forma gratuita, sem revenda ou troca por vantagem;</li>
+          <li>comparecer no dia e horário combinados ou avisar o Doador com antecedência em caso de impossibilidade, liberando o item para outras entidades;</li>
+          <li>realizar o transporte, o armazenamento e a distribuição dos alimentos com boas práticas de higiene e conservação, respondendo por essas etapas;</li>
+          <li>só agendar quantidades que tenha condições reais de retirar e distribuir antes do vencimento;</li>
+          <li>manter seus dados cadastrais corretos, em especial o vínculo com a instituição representada.</li>
+        </ul></article>
+
+      <article class="legal-secao" id="termos-6"><h3>6. Agendamento via WhatsApp</h3>
+        <p>Ao selecionar “Agendar retirada”, a ONG autenticada é levada ao WhatsApp do Doador com uma mensagem pré-formatada (alimento, quantidade e identificação da ONG). Ao confirmar, a doação passa ao status de retirada agendada, deixa de ser exibida às demais ONGs (evitando reservas duplicadas) e passa a compor os indicadores dos painéis. O dia e o horário definitivos são combinados na conversa entre as partes. O Juntos à Mesa não envia mensagens automáticas, não participa nem armazena a conversa e não responde por atrasos, mensagens não respondidas ou acordos feitos fora da plataforma. O uso do WhatsApp está sujeito aos termos desse serviço.</p></article>
+
+      <article class="legal-secao" id="termos-7"><h3>7. Condutas proibidas</h3>
+        <p>É vedado ao usuário:</p>
+        <ul>
+          <li>fornecer informações falsas, usar CNPJ ou identidade de terceiros ou se passar por outra instituição;</li>
+          <li>cadastrar alimentos vencidos, deteriorados, impróprios ao consumo ou cuja origem seja ilícita;</li>
+          <li>comercializar, trocar ou desviar os alimentos recebidos da finalidade assistencial;</li>
+          <li>publicar fotos ou textos ofensivos, discriminatórios, ilegais ou que violem direitos de terceiros;</li>
+          <li>tentar acessar contas, dados ou áreas restritas de outros usuários, burlar a autenticação ou injetar código malicioso;</li>
+          <li>usar o telefone ou o e-mail de outros usuários para fins diferentes do agendamento e do acompanhamento da doação (por exemplo, spam ou divulgação);</li>
+          <li>utilizar a plataforma de forma que prejudique seu funcionamento ou a experiência de terceiros.</li>
+        </ul></article>
+
+      <article class="legal-secao" id="termos-8"><h3>8. Gratuidade e propriedade intelectual</h3>
+        <p>O uso da plataforma é gratuito; não cobramos comissão, taxa ou qualquer valor sobre as doações. A marca Juntos à Mesa, o logotipo, a identidade visual, os textos, o código e o design são de autoria do grupo de desenvolvimento e não podem ser copiados ou utilizados comercialmente sem autorização, ressalvado o uso acadêmico e o que for licenciado no repositório do projeto. O conteúdo inserido pelo usuário (como textos e fotos de alimentos) permanece de sua titularidade; ao publicá-lo, o usuário autoriza sua exibição na plataforma para a finalidade de divulgar a doação.</p></article>
+
+      <article class="legal-secao" id="termos-9"><h3>9. Limitação de responsabilidade e natureza de MVP</h3>
+        <p>A plataforma é fornecida “no estado em que se encontra”, como produto mínimo viável de caráter acadêmico, sem garantia de disponibilidade contínua, ausência de erros ou adequação a todos os usos. Em especial:</p>
+        <ul>
+          <li>os dados ficam apenas no navegador do usuário; a perda de dados por limpeza do navegador, troca de aparelho ou falha local não é recuperável pelo grupo;</li>
+          <li>a autenticação é simulada e não equivale a segurança de ambiente de produção (ver Política de Privacidade, seção 7);</li>
+          <li>o Juntos à Mesa não verifica a veracidade do CNPJ, o vínculo da ONG, o laudo sanitário do Doador nem a qualidade dos alimentos (verificação de documentos está prevista para versões futuras);</li>
+          <li>o grupo não responde por danos decorrentes da qualidade, conservação, transporte ou consumo dos alimentos, nem por descumprimento de acordos entre Doador e ONG, na máxima extensão permitida pela lei;</li>
+          <li>indicadores como “doações realizadas” e “quilos salvos” refletem os dados locais de cada navegador e têm caráter demonstrativo; o impacto social e ambiental pretendido é uma intenção do projeto, não um resultado medido em campo.</li>
+        </ul>
+        <p>Nada nestes Termos afasta direitos que a lei considere irrenunciáveis, inclusive os previstos no Código de Defesa do Consumidor, quando aplicável.</p></article>
+
+      <article class="legal-secao" id="termos-10"><h3>10. Suspensão, encerramento e alterações</h3>
+        <p>O usuário pode deixar de usar a plataforma e eliminar seus dados a qualquer momento (veja a seção 8 da Política de Privacidade). O grupo poderá suspender ou remover contas, doações ou conteúdos que violem estes Termos ou a lei, bem como alterar, suspender ou encerrar funcionalidades do MVP. Estes Termos podem ser atualizados; a versão vigente e sua data constam no topo desta página. O uso após a atualização significa concordância com o novo texto.</p></article>
+
+      <article class="legal-secao" id="termos-11"><h3>11. Lei aplicável e foro</h3>
+        <p>Estes Termos são regidos pelas leis da República Federativa do Brasil. Fica eleito o foro da Comarca de Campinas, Estado de São Paulo, para dirimir controvérsias, ressalvado o foro do domicílio do consumidor quando a lei assim determinar.</p></article>
+    </div>
+
+    <!-- ANEXO: RESUMO DOS DADOS -->
+    <div data-painel="anexo" hidden>
+      <h2>Anexo — Resumo dos dados tratados</h2>
+      <p class="pequeno">Visão rápida, em linguagem simples, do que a plataforma faz com as suas informações.</p>
+      <div class="tabela-rolagem"><table><caption class="so-leitor">Resumo dos dados tratados</caption>
+        <thead><tr><th scope="col">Dado</th><th scope="col">Para quê</th><th scope="col">Quem vê</th><th scope="col">Onde fica</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">E-mail e senha</th><td>Entrar na conta</td><td>Somente o próprio usuário</td><td>localStorage do navegador (senha só como hash)</td></tr>
+          <tr><th scope="row">Nome da instituição e CNPJ</th><td>Identificar ONG ou Doador</td><td>Exibido em doações e no mapa, conforme o perfil</td><td>localStorage</td></tr>
+          <tr><th scope="row">Nome do responsável</th><td>Identificar quem responde pela conta</td><td>Painel do próprio usuário</td><td>localStorage</td></tr>
+          <tr><th scope="row">Telefone (WhatsApp)</th><td>Permitir o contato para a retirada</td><td>ONG que agendar a doação, via WhatsApp</td><td>localStorage e WhatsApp</td></tr>
+          <tr><th scope="row">Bairro / CEP</th><td>Localizar pontos de doação no mapa</td><td>Mapa e busca</td><td>localStorage</td></tr>
+          <tr><th scope="row">Dados da doação e foto</th><td>Divulgar o alimento às ONGs</td><td>ONGs autenticadas e visitantes (catálogo)</td><td>localStorage</td></tr>
+          <tr><th scope="row">E-mail da ONG que agendou</th><td>Marcar a doação como agendada</td><td>Doador e ONG envolvidos</td><td>localStorage</td></tr>
+          <tr><th scope="row">Token de sessão</th><td>Manter o login por tempo limitado</td><td>Somente o navegador</td><td>localStorage</td></tr>
+        </tbody></table></div>
+      <h3>Seus controles</h3>
+      <ul>
+        <li><strong>Corrigir ou redefinir:</strong> “Esqueci minha senha”;</li>
+        <li><strong>Apagar doações:</strong> botão “Remover doação” (exceto as já agendadas);</li>
+        <li><strong>Apagar tudo:</strong> limpar os dados do site no navegador ou usar “Limpar dados” no rodapé;</li>
+        <li><strong>Sair:</strong> botão “Sair” encerra a sessão e remove o token.</li>
+      </ul>
+      <p class="legal-nota"><strong>Aviso.</strong> Este documento foi elaborado para o projeto acadêmico Juntos à Mesa com base nas funcionalidades, requisitos e regras de negócio documentados nas entregas da disciplina. Antes de uma eventual publicação em ambiente real, com servidor e usuários reais, recomenda-se a revisão por profissional jurídico e o preenchimento do canal oficial de contato do responsável pelo tratamento.</p>
+    </div>
   </section>
 </div>
 
@@ -293,7 +525,7 @@
   <div class="conteiner rodape-interno">
     <div><a href="#inicio" class="logo" data-tela="inicio"><img class="logo-img" src="imagens/Logo Laranja 2.png" alt="">Juntos à Mesa</a><p>Conectando excedentes alimentares a quem precisa. ODS-2 · ODS-12 · ODS-17.</p></div>
     <div><h2 class="rodape-titulo">Plataforma</h2><a href="#como-funciona" data-tela="inicio">Como Funciona</a><a href="#mapa" data-tela="inicio">Mapa de Doações</a><a href="#" data-cadastro="ong">Cadastrar ONG</a><a href="#" data-cadastro="doador">Cadastrar Doador</a></div>
-    <div><h2 class="rodape-titulo">Suporte</h2><a href="#sobre" data-tela="inicio">Central de Ajuda</a><a href="#sobre" data-tela="inicio">Fale Conosco</a><a href="#sobre" data-tela="inicio">Privacidade</a><a href="#sobre" data-tela="inicio">Termos de Uso</a></div>
+    <div><h2 class="rodape-titulo">Suporte</h2><a href="#sobre" data-tela="inicio">Central de Ajuda</a><a href="#sobre" data-tela="inicio">Fale Conosco</a><a href="#" data-legal="privacidade">Privacidade</a><a href="#" data-legal="termos">Termos de Uso</a></div>
     <div><h2 class="rodape-titulo">Controle do projeto</h2><button type="button" class="link-rodape" id="btnGerarDados">Gerar dados de teste</button><button type="button" class="link-rodape" id="btnLimparDados">Limpar dados</button></div>
   </div>
 <div class="conteiner rodape-base"><span>© 2026 Juntos à Mesa. Todos os direitos reservados.</span><span>Feito com ♥ para reduzir o desperdício alimentar</span></div>
